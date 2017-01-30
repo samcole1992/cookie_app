@@ -1,7 +1,5 @@
 class Review < ApplicationRecord
 
-  belongs_to :consumer
-  belongs_to :provider
-
+  belongs_to :user
 
 end

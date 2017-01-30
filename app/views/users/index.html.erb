@@ -1,0 +1,13 @@
+<div class="row container" id="">
+  <div class="columns large-4 small-12" id="">
+    <h4>Orders:</h4>
+    <% unless @user.orders.empty? %>
+      <ul>
+        <% @orders.each do |order| %>
+          <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+</div>

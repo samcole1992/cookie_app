@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
 
-  belongs_to :consumer
-  belongs_to :provider
+  belongs_to :user
+  # belongs_to :provider
 
 
 end

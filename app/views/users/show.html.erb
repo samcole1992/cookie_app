@@ -1,0 +1,19 @@
+
+<h1>What's up <%= @user.username %>! Want cookies?</h1>
+
+<h2><%= link_to "Order cookies", new_order_path%></h2>
+
+<h3>Current Orders</h3>
+<div>
+
+<% unless @user.orders.empty? %>
+  <ul>
+    <% @orders.each do |order| %>
+
+    <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
+
+    <% end %>
+  </ul>
+
+<% end %>
+</div>

@@ -1,0 +1,14 @@
+<div class="row container">
+  <div class="columns large-3 small-6">
+    <h2><%=@order.user.username %> wants cookies!</h2>
+
+  <h3>
+  <%=@order.user.username %> wants <%= @order.cookie_amount%> <%= @order.cookie_type%>
+  </h3>
+
+  <h3>
+  <%=@order.user.username %> requests <%= @pickup %> at <%= @order.address %>, <%= @order.city %>, <%= @order.state %> <%= @order.zip %>
+  </h3>
+
+  </div>
+</div>

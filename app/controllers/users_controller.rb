@@ -1,4 +1,5 @@
-class ProvidersController < ApplicationController
+require 'pry'
+class UsersController < ApplicationController
 
   def index
     @user = current_user
@@ -6,6 +7,13 @@ class ProvidersController < ApplicationController
     @order = Order.find(params[:id])
     @reviews = @user.reviews
   end
+
+  def show
+    @user = current_user
+    @reviews = @user.reviews
+    @orders = @user.orders
+  end
+
 
   def edit
     @user = current_user
@@ -16,4 +24,7 @@ class ProvidersController < ApplicationController
     @user = current_user
 
   end
+
+
+
 end
