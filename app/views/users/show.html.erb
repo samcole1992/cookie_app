@@ -3,7 +3,10 @@
 
 <h2><%= link_to "Order cookies", new_order_path%></h2>
 
-<h3>Current Orders</h3>
+<%if @user.baker%>
+  <h2><%= link_to "Bake Cookies and Get PAID", users_path%></h2>
+<%end%>
+<h3>Current Ordered Orders</h3>
 <div>
 
 <% unless @user.orders.empty? %>
@@ -16,4 +19,5 @@
   </ul>
 
 <% end %>
+
 </div>

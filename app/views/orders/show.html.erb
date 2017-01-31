@@ -3,12 +3,31 @@
     <h2><%=@order.user.username %> wants cookies!</h2>
 
   <h3>
-  <%=@order.user.username %> wants <%= @order.cookie_amount%> <%= @order.cookie_type%>
+    <%=@order.user.username %> wants <%= @order.cookie_amount%> <%= @order.cookie_type%>
   </h3>
 
   <h3>
-  <%=@order.user.username %> requests <%= @pickup %> at <%= @order.address %>, <%= @order.city %>, <%= @order.state %> <%= @order.zip %>
+  <%=@order.user.username %> requests <%= @pickup %> at <%= @user.street %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
   </h3>
+
+  <h3>
+    <%=@order.user.username  %> will pay <%=@order.payment %>
+  </h3>
+  <h3><%=@order.user.username %> can be contacted at <%=@order.user.phone_number%> </h3>
+
+  <%= form_for(@order) do |f| %>
+    <div class="field">
+      <%= f.label :fulfilled, "Accept?" %>
+      <%= f.check_box :fulfilled %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
+  <% end %>
+
+  <p><%= link_to "Back to Orders", users_path %></p>
+
 
   </div>
 </div>

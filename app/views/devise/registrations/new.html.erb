@@ -1,5 +1,4 @@
 <h2>Sign up</h2>
-<h1> Hi Sam</h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -20,6 +19,26 @@
   </div>
 
   <div class="field">
+    <%= f.label :street, "Street Address" %><br/>
+    <%= f.text_field :street %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br/>
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %><br/>
+    <%= f.text_field :state %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zip, "Zip Code" %><br/>
+    <%= f.text_field :zip %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
@@ -35,6 +54,11 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :baker, "Want to be a Baker?" %>
+    <%= f.check_box :baker %>
   </div>
 
   <div class="actions">

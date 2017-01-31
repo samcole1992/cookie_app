@@ -1,13 +1,18 @@
 <div class="row container" id="">
   <div class="columns large-4 small-12" id="">
-    <h4>Orders:</h4>
-    <% unless @user.orders.empty? %>
+    <h4>Available Orders:</h4>
+    <% unless @orders.empty? %>
       <ul>
         <% @orders.each do |order| %>
-          <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
+          <% if order.fulfilled==false %>
+            <li>
+              <%=link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %>
+            </li>
+          <%end%>
         <% end %>
       </ul>
     <% end %>
   </div>
+  <p><%= link_to "Back to Home ", @user %></p>
 
 </div>
