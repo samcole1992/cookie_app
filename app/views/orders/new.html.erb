@@ -11,7 +11,7 @@
 
     <div class="field"><br/>
       <%= f.label :cookie_amount, "How many cookies?" %><br/>
-      <%= f.collection_radio_buttons :cookie_amount, [[6, "1/2 Dozen"], [12, "1 Dozen"], [18, "1 1/2 Dozen"], [24, "2 Dozen"], [30, "2 1/2 Dozen"], [36, "3 Dozen"], [42, "3 1/2 Dozen"], [48, "4 Dozen"]], :first, :last %>
+      <%= f.collection_radio_buttons :cookie_amount, [[6, "6"], [12, "12"], [18, "18"], [24, "24"], [30, "30"], [36, "36"], [42, "42"], [48, "48"]], :first, :last %>
     </div><br/>
 
     <div class="field">
@@ -29,5 +29,7 @@
     </div>
 
   <% end %>
+  <p><%= link_to "Back to Home ", @user %></p>
+
 
 </div>

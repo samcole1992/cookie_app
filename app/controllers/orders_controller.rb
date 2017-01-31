@@ -40,12 +40,11 @@ class OrdersController < ApplicationController
       render :index
     end
   end
-  
+
   def update
     @user = current_user
     @order = Order.find(params[:id])
     @order.user = @user
-    binding.pry
     if @order.update(order_params)
       flash[:notice] = "Order Accepted!"
       redirect_to @user
