@@ -1,49 +1,65 @@
-<div class="row container">
-  <div class="columns large-3 small-6">
-    <h2><%=@order.user.username %> wants cookies!</h2>
+<div class="sign_up_whole">
 
-    <h3>
-      <%=@order.user.username %> wants <%= @order.cookie_amount%> <%= @order.cookie_type%> cookies
-    </h3>
+  <div class="row container">
+    <div class="columns large-6 small-12">
+      <h3>
+        <%=@order.consumer.username %> wants <%= @order.cookie_amount%> <%= @order.cookie_type%> cookies
+      </h3>
 
-    <h3>
-    <%=@order.user.username %> requests <%= @pickup %> at <%= @user.street %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
-    </h3>
+      <h3>
+      <%=@order.consumer.username %> requests <%= @pickup %> at <%= @user.street %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+      </h3>
 
-    <h3>
-      <%=@order.user.username  %> will pay <%=@order.payment %> dollars
-    </h3>
-    <h3>
-      <%=@order.user.username %> can be contacted at <%=@order.user.phone_number%>
-    </h3>
+      <h3>
+        Allergies:
+        <%=@order.allergies %>
+      </h3>
 
-  <%if !@order.fulfilled %>
-    <%= form_for(@order) do |f| %>
-      <div class="field">
-        <%= f.label :fulfilled, "Accept?" %>
-        <%= f.check_box :fulfilled %>
-      </div>
+      <h3>
+        <%=@order.consumer.username  %> will pay <%=@order.payment %> dollars
+      </h3>
+      <h3>
+        <%=@order.consumer.username %> can be contacted at <%=@order.consumer.phone_number%>
+      </h3>
 
-      <div class="actions">
-        <%= f.submit "Submit" %>
-      </div>
-    <% end %>
-  <% elsif @order.fulfilled && !@order.completion %>
-    <%= form_for(@order) do |f| %>
-      <div class="field">
-        <%= f.label :completion, "Order Complete" %>
-        <%= f.check_box :completion %>
-      </div>
+  <% if @order.consumer != @user %>
 
-      <div class="actions">
-        <%= f.submit "Submit" %>
-      </div>
-    <% end %>
+    <%if !@order.fulfilled %>
+      <%= form_for(@order) do |f| %>
+        <div class="field">
+          <%= f.label :fulfilled, "Accept?" %>
+          <%= f.check_box :fulfilled %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Submit" %>
+        </div>
+      <% end %>
+
+      <% if @order.fulfilled %>
+        <% @order.provider = @user %>
+      <% end %>
+    <%end%>
   <%end%>
+  <% if @order.consumer == @user %>
 
-  <p><%= link_to "Back to Orders", users_path %></p>
-  <p><%= link_to "Back to Home ", @user %></p>
+      <% if @order.fulfilled && !@order.completion %>
+        <%= form_for(@order) do |f| %>
+          <div class="field">
+            <%= f.label :completion, "Order Complete?" %>
+            <%= f.check_box :completion %>
+          </div>
 
+          <div class="actions">
+            <%= f.submit "Submit" %>
+          </div>
+        <% end %>
+      <% end %>
+  <% end %>
 
+    <p><%= link_to "Back to Orders", users_path %></p>
+    <p><%= link_to "Back to Home ", @user %></p>
+
+    </div>
   </div>
 </div>

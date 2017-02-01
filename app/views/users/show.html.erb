@@ -1,23 +1,33 @@
+<div class="row container">
 
-<h1>What's up <%= @user.username %>! Want cookies?</h1>
+<div class="sign_up_whole">
 
-<h2><%= link_to "Order cookies", new_order_path%></h2>
 
-<%if @user.baker%>
-  <h2><%= link_to "Bake Cookies and Get PAID", users_path%></h2>
-<%end%>
-<h3>Current Ordered Orders</h3>
-<div>
+  <h1>What's up <%= @user.username %>! Want cookies?</h1>
 
-<% unless @user.orders.empty? %>
-  <ul>
-    <% @orders.each do |order| %>
+  <h2><%= link_to "Order cookies", new_order_path%></h2>
 
-    <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
+  <%if @user.baker%>
+    <h2><%= link_to "Bake Cookies and Get PAID", users_path%></h2>
+  <%end%>
 
-    <% end %>
-  </ul>
+  <h3>Current Ordered Orders</h3>
 
-<% end %>
-
+  <div>
+    <% unless @orders.empty? %>
+      <ul>
+        <% @orders.each do |order| %>
+          <% if order.consumer == @user %>
+            <% if order.fulfilled && !order.completion %>
+              <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
+              <p>Order was picked up by <%=order.provider.username%>!</p>
+            <% elsif !order.fulfilled && !order.completion %>
+              <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    <%end%>
+  </div>
+</div>
 </div>

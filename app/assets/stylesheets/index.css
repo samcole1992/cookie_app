@@ -1,0 +1,11 @@
+body {
+
+  background-image: url("/assets/cookie.jpg");
+}
+
+.sign_up_whole {
+
+  padding: 10px;
+  background: rgba(255, 255, 255, .6);
+  border-radius: 15px
+}

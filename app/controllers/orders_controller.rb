@@ -2,7 +2,7 @@ require "pry"
 class OrdersController < ApplicationController
 
   def index
-    @user = current_consumer
+    @user = current_user
     @reviews = @user.reviews
     @order = Order.new
   end
@@ -10,41 +10,54 @@ class OrdersController < ApplicationController
   def show
     # binding.pry
     @order = Order.find(params[:id])
-    @user = @order.user
+    @user = current_user
     @pickup = ""
     if @order.pickup
-      @pickup = "delivery"
-    else
       @pickup = "pickup"
+    else
+      @pickup = "delivery"
     end
   end
 
   def new
     @user = current_user
     @order = Order.new
-    @order.user = @user
+    @order.consumer = @user
+    @pickup = ""
+    if @order.pickup
+      @pickup = "delivery"
+    else
+      @pickup = "pickup"
+    end
 
   end
 
   def create
     @user = current_user
     @order = Order.new(order_params)
-    @order.user = @user
+    @order.consumer = @user
+    @pickup = ""
+    if @order.pickup
+      @pickup = "delivery"
+    else
+      @pickup = "pickup"
+    end
     # binding.pry
-    @order.save
+
     if @order.save
       flash[:notice] = "Order created successfully!"
       redirect_to @user
     else
+      # binding.pry
       flash.now[:notice] = @order.errors.full_messages.to_sentence
-      render :index
+      render :new
     end
   end
 
   def update
     @user = current_user
     @order = Order.find(params[:id])
-    @order.user = @user
+    @order.provider = @user
     if @order.update(order_params)
       flash[:notice] = "Order Accepted!"
       redirect_to @user

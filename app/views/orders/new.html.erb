@@ -1,35 +1,46 @@
-<div class="bar-form columns large-6 small-12">
-  <h3>Get me some cookies</h3>
+
+<div class="sign_up_whole">
 
 
-  <%= form_for(@order) do |f| %>
+    <%= form_for(@order) do |f| %>
+    <div class="row container">
+      <div class="columns large-6 small-12">
 
-    <div class="field">
-      <%= f.label :cookie_type %><br/>
-      <%= f.text_field :cookie_type %>
+      <div class="field">
+        <%= f.label :cookie_type %><br/>
+        <%= f.text_field :cookie_type %>
+      </div>
+
+      <div class="field"><br/>
+        <%= f.label :cookie_amount, "How many cookies?" %><br/>
+        <%= f.collection_radio_buttons :cookie_amount, [[6, "6"], [12, "12"], [18, "18"], [24, "24"], [30, "30"], [36, "36"], [42, "42"], [48, "48"]], :first, :last %>
+      </div><br/>
+
+      <div class="field">
+        <%= f.label :payment %><br/>
+        <%= f.text_field :payment %>
+      </div>
+
+      <div class="field"><br/>
+        <%= f.label :allergies %><br/>
+        <%= f.text_field :allergies %>
+      </div>
+
+      <div class="field"><br/>
+        <%= f.label :pickup, "Pickup or Delivery?" %><br/>
+        <%= f.collection_radio_buttons :pickup, [[true, "Pickup"], [false, "Delivery"]], :first, :last %>
+      </div><br/>
+
+
+      <div class="actions">
+        <%= f.submit(value="Submit Order") %>
+      </div>
     </div>
+  </div>
 
-    <div class="field"><br/>
-      <%= f.label :cookie_amount, "How many cookies?" %><br/>
-      <%= f.collection_radio_buttons :cookie_amount, [[6, "6"], [12, "12"], [18, "18"], [24, "24"], [30, "30"], [36, "36"], [42, "42"], [48, "48"]], :first, :last %>
-    </div><br/>
+    <% end %>
 
-    <div class="field">
-      <%= f.label :payment %><br/>
-      <%= f.text_field :payment %>
-    </div>
-
-    <div class="field"><br/>
-      <%= f.label :allergies %><br/>
-      <%= f.text_field :allergies %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit(value="Submit Order") %>
-    </div>
-
-  <% end %>
-  <p><%= link_to "Back to Home ", @user %></p>
+    <p><%= link_to "Back to Home ", @user %></p>
 
 
 </div>

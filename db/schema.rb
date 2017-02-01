@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131194824) do
+ActiveRecord::Schema.define(version: 20170201161221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id",                       null: false
     t.integer  "payment",                       null: false
     t.boolean  "completion",    default: false
     t.datetime "created_at",                    null: false
@@ -26,7 +25,8 @@ ActiveRecord::Schema.define(version: 20170131194824) do
     t.string   "cookie_type",                   null: false
     t.boolean  "pickup",        default: false
     t.boolean  "fulfilled",     default: false
-    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
+    t.integer  "consumer_id",                   null: false
+    t.integer  "provider_id"
   end
 
   create_table "reviews", force: :cascade do |t|
