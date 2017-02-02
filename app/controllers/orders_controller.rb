@@ -3,8 +3,8 @@ class OrdersController < ApplicationController
 
   def index
     @user = current_user
+    @orders = Order.all
     @reviews = @user.reviews
-    @order = Order.new
   end
 
   def show
@@ -29,7 +29,6 @@ class OrdersController < ApplicationController
     else
       @pickup = "pickup"
     end
-
   end
 
   def create
@@ -43,10 +42,9 @@ class OrdersController < ApplicationController
       @pickup = "pickup"
     end
     # binding.pry
-
     if @order.save
       flash[:notice] = "Order created successfully!"
-      redirect_to @user
+      render users_path
     else
       # binding.pry
       flash.now[:notice] = @order.errors.full_messages.to_sentence
@@ -58,9 +56,16 @@ class OrdersController < ApplicationController
     @user = current_user
     @order = Order.find(params[:id])
     @order.provider = @user
-    if @order.update(order_params)
+
+    if !@order.fulfilled
+      @order.update(order_params)
       flash[:notice] = "Order Accepted!"
-      redirect_to @user
+      redirect_to orders_path
+    elsif @order.fulfilled
+      @order.update(order_params)
+      flash[:notice] = "Order Fulfilled!"
+      redirect_to users_path
+
     else
       flash.now[:notice] = @order.errors.full_messages.to_sentence
       render :index
@@ -70,7 +75,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:address, :city, :state, :zip, :allergies, :cookie_type, :cookie_amount, :payment, :fulfilled)
+    params.require(:order).permit(:address, :city, :state, :zip, :allergies, :cookie_type, :cookie_amount, :payment, :completion, :fulfilled)
   end
 
 end

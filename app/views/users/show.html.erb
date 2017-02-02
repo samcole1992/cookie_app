@@ -1,33 +1,37 @@
-<div class="row container">
+  <div class="sign_up_whole">
 
-<div class="sign_up_whole">
+      <div class="columns large-6 small-12">
 
+        <h1> <%= @baker.username %></h1>
 
-  <h1>What's up <%= @user.username %>! Want cookies?</h1>
+        <h1>
+          <%if @average.nan? %>
+            Be the first to rate <%=@baker.username %>!
+          <% else%>
+            Rating:<%= @average %>
+            <%end%>
+        </h1>
+        </div>
 
-  <h2><%= link_to "Order cookies", new_order_path%></h2>
+      <%= form_for [@baker, @review] do |f| %>
+      <div class="row container">
+        <div class="columns large-6 small-12">
+        <div class="field">
+          <%= f.label :body, "Review" %>
+          <%= f.text_field :body %>
+        </div>
 
-  <%if @user.baker%>
-    <h2><%= link_to "Bake Cookies and Get PAID", users_path%></h2>
-  <%end%>
+        <div class="field">
+          <%= f.label :rating, "Rating" %>
+            <%= f.collection_radio_buttons :rating, [[1, "1"], [2, "2"], [3, "3"], [4, "4"], [5, "5"]], :first, :last %>
+        </div>
 
-  <h3>Current Ordered Orders</h3>
+        <div class="actions">
+          <%= f.submit "Submit Review" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <p><%= link_to "Back to Home ", users_path %></p>
 
-  <div>
-    <% unless @orders.empty? %>
-      <ul>
-        <% @orders.each do |order| %>
-          <% if order.consumer == @user %>
-            <% if order.fulfilled && !order.completion %>
-              <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
-              <p>Order was picked up by <%=order.provider.username%>!</p>
-            <% elsif !order.fulfilled && !order.completion %>
-              <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
-            <% end %>
-          <% end %>
-        <% end %>
-      </ul>
-    <%end%>
-  </div>
-</div>
 </div>

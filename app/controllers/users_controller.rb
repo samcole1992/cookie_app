@@ -3,31 +3,47 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    @orders = Order.all
-
+    @orders = Order.where(consumer_id: @user.id)
     @reviews = @user.reviews
 
-    # binding.pry
   end
 
   def show
-    @user = current_user
-    @reviews = @user.reviews
-    @orders = Order.all
+    a = request.original_url
+    baker_id = a[-1].to_i
+    @baker = User.find_by(id: baker_id)
+    @reviews = Review.where(provider_id: @baker.id)
     # binding.pry
-  end
-
-
-  def edit
+    @review = Review.new(review_params)
     @user = current_user
 
+    @review.provider = @baker
+    @review.consumer = @user
+    rating = 0
+    count = 0
+
+      @reviews.each do |review|
+        unless review.rating == nil
+        rating += review.rating
+        count += 1
+      end
+      end
+    @average = rating.to_f / count.to_f
+  #     if @review.save
+  #       flash[:notice] = "Review created successfully!"
+  #       render :show
+  #     else
+  #       flash[:notice] = @review.errors.full_messages.to_sentence
+  #       render :show
+  #     end
+  #
   end
 
-  def update
-    @user = current_user
+  private
 
+  def review_params
+    params.permit(:rating, :body)
   end
-
 
 
 end

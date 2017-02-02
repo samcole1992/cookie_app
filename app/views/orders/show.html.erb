@@ -5,6 +5,9 @@
       <h3>
         <%=@order.consumer.username %> wants <%= @order.cookie_amount%> <%= @order.cookie_type%> cookies
       </h3>
+      <h3>
+        <%=@order.consumer.username  %> will pay $<%=@order.payment %>
+      </h3>
 
       <h3>
       <%=@order.consumer.username %> requests <%= @pickup %> at <%= @user.street %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
@@ -15,17 +18,16 @@
         <%=@order.allergies %>
       </h3>
 
-      <h3>
-        <%=@order.consumer.username  %> will pay <%=@order.payment %> dollars
-      </h3>
+
       <h3>
         <%=@order.consumer.username %> can be contacted at <%=@order.consumer.phone_number%>
       </h3>
 
-  <% if @order.consumer != @user %>
+  <% if @order.consumer != @user && @user.baker %>
 
     <%if !@order.fulfilled %>
       <%= form_for(@order) do |f| %>
+
         <div class="field">
           <%= f.label :fulfilled, "Accept?" %>
           <%= f.check_box :fulfilled %>
@@ -34,31 +36,30 @@
         <div class="actions">
           <%= f.submit "Submit" %>
         </div>
-      <% end %>
 
-      <% if @order.fulfilled %>
-        <% @order.provider = @user %>
       <% end %>
     <%end%>
   <%end%>
+
   <% if @order.consumer == @user %>
+    <% if @order.fulfilled && !@order.completion %>
+      <%= form_for(@order) do |f| %>
 
-      <% if @order.fulfilled && !@order.completion %>
-        <%= form_for(@order) do |f| %>
-          <div class="field">
-            <%= f.label :completion, "Order Complete?" %>
-            <%= f.check_box :completion %>
-          </div>
+        <div class="field">
+          <%= f.label :completion, "Order Complete?" %>
+          <%= f.check_box :completion %>
+        </div>
 
-          <div class="actions">
-            <%= f.submit "Submit" %>
-          </div>
-        <% end %>
+        <div class="actions">
+          <%= f.submit "Submit" %>
+        </div>
+        
       <% end %>
+    <% end %>
   <% end %>
 
-    <p><%= link_to "Back to Orders", users_path %></p>
-    <p><%= link_to "Back to Home ", @user %></p>
+    <p><%= link_to "Back to Orders", orders_path %></p>
+    <p><%= link_to "Back to Home ", users_path %></p>
 
     </div>
   </div>
