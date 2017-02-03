@@ -6,16 +6,12 @@ class UsersController < ApplicationController
     @user = current_user
     @orders = Order.where(consumer_id: @user.id)
     
-binding.pry
-    @reviews = @user.reviews
-
   end
 
   def show
     a = request.original_url
     baker_id = a[-1].to_i
     @baker = User.find_by(id: baker_id)
-    # a = Review.all
     # binding.pry
 
     @reviews = Review.where(provider_id: @baker.id)
@@ -35,14 +31,6 @@ binding.pry
       end
     b= rating.to_f / count.to_f
     @average = b.round(1)
-  #     if @review.save
-  #       flash[:notice] = "Review created successfully!"
-  #       render :show
-  #     else
-  #       flash[:notice] = @review.errors.full_messages.to_sentence
-  #       render :show
-  #     end
-  #
   end
 
   private

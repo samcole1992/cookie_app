@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201161221) do
+ActiveRecord::Schema.define(version: 20170203170601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20170201161221) do
     t.boolean  "fulfilled",     default: false
     t.integer  "consumer_id",                   null: false
     t.integer  "provider_id"
+    t.string   "ll",            default: ""
+    t.float    "distance"
   end
 
   create_table "reviews", force: :cascade do |t|

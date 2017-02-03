@@ -26,10 +26,13 @@
         <% @orders.each do |order| %>
         <% unless order.fulfilled && order.completion %>
             <% if order.fulfilled && !order.completion %>
-              <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
+              <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}"%>
+              </li>
+
               <p>This order was picked up by <%=link_to"#{order.provider.username}", "/users/#{order.provider.id}"%> Please rate your order!</p>
             <% elsif !order.fulfilled && !order.completion %>
-              <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %></li>
+              <li><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %>
+              </li>
             <% end %>
             <% end %>
 

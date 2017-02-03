@@ -3,9 +3,15 @@ class OrdersController < ApplicationController
 
   def index
     @user = current_user
-    @orders = Order.all
-    @reviews = @user.reviews
-  end
+    orders = Order.all
+    orders.each do |order|
+      a=Geokit::Geocoders::GoogleGeocoder.geocode "#{order.consumer.street}, #{order.consumer.city}, #{order.consumer.state}"
+      b= Geokit::Geocoders::GoogleGeocoder.geocode "#{@user.street}, #{@user.city}, #{@user.state}"
+      order.distance = a.distance_to(b)
+    end
+     @orders= orders.sort_by{|v|v["distance"]}
+    #  binding.pry
+    end
 
   def show
     # binding.pry

@@ -2,15 +2,19 @@
   <div >
     <h4>Available Orders:</h4>
     <% unless @orders.empty? %>
-      <ul>
+    <div id="OrderList"></div>
+
+      <!-- <ul>
         <% @orders.each do |order| %>
           <% if !order.fulfilled && order.consumer != @user %>
             <li>
               <%=link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %>
+              Distance: <%="#{order.distance.round(2)}" %>
+
             </li>
           <%end%>
         <% end %>
-      </ul>
+      </ul> -->
     <% end %>
   </div>
   <p><%= link_to "Back to Home ", users_path %></p>
