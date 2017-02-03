@@ -101,9 +101,9 @@ class ReviewList extends Component {
 
     componentDidMount() {
       let url = window.location.href.split("/");
-      let newBakerId = url[url.length - 1];
+      let newBakerId = url[url.length - 9];
 
-      fetch(`/api/v1/reviews`, {
+      fetch(`/api/v1/users/${newBakerId}/reviews`, {
         credentials: 'same-origin'
       })
       .then(response => {
@@ -116,67 +116,65 @@ class ReviewList extends Component {
         }
       })
       .then(response => response.json())
-      .then(body => {
-        let newCurrentUser = body.currentUser;
-        let newReviews = body.reviews;
-        let newUsers = body.users;
+      .then(response => {
+        let newReviews =[];
+         response.forEach(function(review){
+           newReviews.push(review);
+         });
         this.setState({
-          currentUser: newCurrentUser,
+          // currentUser: newCurrentUser,
           reviews: newReviews,
-          users: newUsers,
-          barId: newBarId
         });
       });
     }
 
-
-
     render() {
-      let counter = -1;
+      // let counter = -1;
       let reviews;
       if (this.state.reviews) {
         reviews = this.state.reviews.map((review) => {
-          counter ++;
+          // counter ++;
 
-          let handleUpvote = () => {
-            return(
-              this.handleVote('up_vote', review)
-            );
-          };
-          let handleDownvote = () => {
-            return(
-              this.handleVote('down_vote', review)
-            );
-          };
+          // let handleUpvote = () => {
+          //   return(
+          //     this.handleVote('up_vote', review)
+          //   );
+          // };
+          // let handleDownvote = () => {
+          //   return(
+          //     this.handleVote('down_vote', review)
+          //   );
+          // };
+          //
+          // let handleDeleteReview = () => {
+          //   return(
+          //     this.handleDelete(review.id)
+          //   );
+          // };
 
-          let handleDeleteReview = () => {
-            return(
-              this.handleDelete(review.id)
-            );
-          };
+          // let handleDelete = this.handleDelete;
 
-          let handleDelete = this.handleDelete;
-          debugger
           return(
             <Review
               key = {review.id}
               id = {review.id}
               rating = {review.rating}
               body = {review.body}
-              score = {review.score}
-              user_id = {review.user_id}
-              handleUpvote = {handleUpvote}
-              handleDownvote = {handleDownvote}
-              handleDelete = {handleDeleteReview}
-              currentUser = {this.state.currentUser}
-              barId = {this.state.barId}
+              // score = {review.score}
+              // user_id = {review.user_id}
+              // handleUpvote = {handleUpvote}
+              // handleDownvote = {handleDownvote}
+              // handleDelete = {handleDeleteReview}
+              // currentUser = {this.state.currentUser}
+              consumerId = {review.consumer_id}
+              providerId = {review.provider_id}
             />
           );
         });
       }
-      reviews = reviews.sort(function(a,b) {
-        return b.key - a.key;
-      });
+      // reviews = reviews.sort(function(a,b) {
+      //   return b.key - a.key;
+      // });
       return(
         <div>
           <h4>Reviews</h4>

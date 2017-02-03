@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
     # binding.pry
     if @order.save
       flash[:notice] = "Order created successfully!"
-      render users_path
+      redirect_to users_path
     else
       # binding.pry
       flash.now[:notice] = @order.errors.full_messages.to_sentence

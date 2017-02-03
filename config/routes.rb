@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   root "users#index"
 
   namespace :api do
-      namespace :v1 do
-        resources :reviews
-      end
+    namespace :v1 do
+      resources :users do
+       resources :reviews
+     end
     end
+  end
   resources :users do
     resources :reviews
   end

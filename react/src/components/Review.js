@@ -32,6 +32,7 @@ class Review extends Component {
 // | Score: {score} | {upvote} | {downvote} {edit} {destroy}
     return(
       <div>
+      
         {this.props.rating} | {body}
 
       </div>

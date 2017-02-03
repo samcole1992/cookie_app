@@ -1,9 +1,12 @@
 require 'pry'
+require 'geokit'
 class UsersController < ApplicationController
 
   def index
     @user = current_user
     @orders = Order.where(consumer_id: @user.id)
+    
+binding.pry
     @reviews = @user.reviews
 
   end
@@ -12,8 +15,10 @@ class UsersController < ApplicationController
     a = request.original_url
     baker_id = a[-1].to_i
     @baker = User.find_by(id: baker_id)
-    @reviews = Review.where(provider_id: @baker.id)
+    # a = Review.all
     # binding.pry
+
+    @reviews = Review.where(provider_id: @baker.id)
     @review = Review.new(review_params)
     @user = current_user
 
@@ -28,7 +33,8 @@ class UsersController < ApplicationController
         count += 1
       end
       end
-    @average = rating.to_f / count.to_f
+    b= rating.to_f / count.to_f
+    @average = b.round(1)
   #     if @review.save
   #       flash[:notice] = "Review created successfully!"
   #       render :show
@@ -44,6 +50,7 @@ class UsersController < ApplicationController
   def review_params
     params.permit(:rating, :body)
   end
+
 
 
 end

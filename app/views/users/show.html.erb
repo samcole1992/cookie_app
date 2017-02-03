@@ -11,6 +11,11 @@
             Rating:<%= @average %>
             <%end%>
         </h1>
+        <h2>
+          Reviews:
+        </h2>
+        <div id="ReviewList"></div>
+
         </div>
 
       <%= form_for [@baker, @review] do |f| %>

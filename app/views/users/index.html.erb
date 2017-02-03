@@ -4,13 +4,18 @@
 
 
   <h1>What's up <%= @user.username %>! Want cookies?</h1>
-<div class="large-6 medium-6 small-12 columns">
-  <h2><%= link_to "Order cookies", new_order_path%></h2>
-</div>
+
+  <div class="large-6 medium-6 small-12 columns">
+    <div class="primary callout radius">
+    <h2><%= link_to "Order cookies", new_order_path%></h2>
+    </div>
+  </div>
 
   <%if @user.baker%>
   <div class="large-6 medium-6 small-12 columns">
-    <h2><%= link_to "Bake Cookies and Get PAID", orders_path%></h2>
+    <div class="success callout radius">
+      <h2><%= link_to "Bake Cookies and Get PAID", orders_path%></h2>
+    </div>
     </div>
   <%end%>
 
