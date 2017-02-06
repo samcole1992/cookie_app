@@ -3,8 +3,8 @@
 
 
     <%= form_for(@order) do |f| %>
-    <div class="row container">
-      <div class="columns large-6 small-12">
+    <div id="username"class="row container">
+      <div class="small-6 small-centered columns">
 
       <div class="field">
         <%= f.label :cookie_type %><br/>
@@ -40,7 +40,6 @@
 
     <% end %>
 
-    <p><%= link_to "Back to Home ", users_path %></p>
 
 
 </div>

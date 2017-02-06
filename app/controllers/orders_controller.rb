@@ -1,4 +1,6 @@
 require "pry"
+require 'geokit'
+
 class OrdersController < ApplicationController
 
   def index

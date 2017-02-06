@@ -2,24 +2,27 @@
 
   <div class="row container">
     <div class="columns large-6 small-12">
-      <h3>
-        <%=@order.consumer.username %> wants <%= @order.cookie_amount%> <%= @order.cookie_type%> cookies
+      <h3 id="username"><%=@order.consumer.username %>'s order
       </h3>
-      <h3>
-        <%=@order.consumer.username  %> will pay $<%=@order.payment %>
+      <h3 id="username">
+        <%= @order.cookie_amount%> <%= @order.cookie_type%> cookies
+        for $<%=@order.payment %>
       </h3>
-
-      <h3>
-      <%=@order.consumer.username %> requests <%= @pickup %> at <%= @user.street %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
-      </h3>
-
-      <h3>
+      <br/>
+      <h3 id="username">
         Allergies:
-        <%=@order.allergies %>
+        <% if @order.allergies = ''%>
+          None
+        <% else %>
+          <%=@order.allergies %>
+        <% end %>
       </h3>
-
-
-      <h3>
+      <br/>
+      <h3 id="username">
+      <%= @pickup %> at <%= @user.street %>, <%= @user.city %>, <%= @user.state %> <%= @user.zip %>
+      </h3>
+      <br/>
+      <h3 id="username">
         <%=@order.consumer.username %> can be contacted at <%=@order.consumer.phone_number%>
       </h3>
 
@@ -53,13 +56,12 @@
         <div class="actions">
           <%= f.submit "Submit" %>
         </div>
-        
+
       <% end %>
     <% end %>
   <% end %>
 
-    <p><%= link_to "Back to Orders", orders_path %></p>
-    <p><%= link_to "Back to Home ", users_path %></p>
+    <p id="username"><%= link_to "Back to Orders", orders_path %></p>
 
     </div>
   </div>

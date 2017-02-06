@@ -1,5 +1,4 @@
 body {
-  font: Verdana;
   background-image: url("/assets/cookie4.jpg");
 
 }
@@ -12,3 +11,38 @@ body {
   margin: 15px;
 
 }
+.Reviews{
+  font-family: 'Quattrocentro', serif;
+  color: #2F1D06;
+
+}
+
+#index-title{
+  font-size: 100px;
+  font-family: 'Amaranth', serif;
+  color: #2F1D06;
+
+}
+ #index-welcome{
+   font-size: 40px;
+   font-family: 'Quattrocentro', serif;
+   color: #2F1D06;
+
+ }
+
+ #button{
+   font-family: 'Quando', serif;
+   color: #2F1D06;
+
+ }
+ #list{
+   font-family: 'Quattrocentro', serif;
+  color: #2F1D06;
+ }
+
+ #username{
+   text-align: center;
+   font-family: 'Quattrocentro', serif;
+   color: #2F1D06;
+
+ }

@@ -1,20 +1,22 @@
   <div class="sign_up_whole">
 
-      <div class="columns large-6 small-12">
+        <h1 id="username" class="text-center"> <%= @baker.username %></h1>
 
-        <h1> <%= @baker.username %></h1>
+        <div class="columns large-6 small-12">
 
-        <h1>
+        <h1 id="username">
           <%if @average.nan? %>
-            Be the first to rate <%=@baker.username %>!
+          <h4 id="username" class="text-center">Rating:</h4>
+            <div id="username"class="text-center">
+              Be the first to rate
+             <%=@baker.username %>!</div>
           <% else%>
-            Rating:<%= @average %>
+            <h4 id="username" class="text-center">Rating:</h4>
+            <p id="username"class="text-center"><%= @average %></p>
             <%end%>
         </h1>
-        <h2>
-          Reviews:
-        </h2>
-        <div id="ReviewList"></div>
+
+        <div class="Reviews" id="ReviewList"></div>
 
         </div>
 
@@ -37,6 +39,16 @@
       </div>
     </div>
     <% end %>
-    <p><%= link_to "Back to Home ", users_path %></p>
+      <% if @user.admin %>
+        <%= form_for(@user) do |f|%>
+          <div class="field">
+            <%= f.label :admin, "Make this user an Admin?" %>
+            <%= f.check_box :admin %>
+          </div>
 
+          <div class="actions">
+            <%= f.submit "Submit" %>
+          </div>
+        <% end %>
+      <%end %>
 </div>

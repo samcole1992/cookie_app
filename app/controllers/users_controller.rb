@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   def index
     @user = current_user
     @orders = Order.where(consumer_id: @user.id)
-    
+    @users = User.all
+
   end
 
   def show

@@ -12,7 +12,7 @@ class OrderList extends React.Component {
 
   componentDidMount(){
     this.getOrders();
-    setInterval(this.getOrders, 45000);
+    setInterval(this.getOrders, 87000);
   }
 
   getOrders() {
@@ -41,12 +41,12 @@ class OrderList extends React.Component {
   }
 
   filterOrders(){
-    let newOrders = this.state.orders.forEach(function(order){
+    let newOrders = this.state.orders.forEach(function(item, index,order){
       if (order.distance==0) {
-        order.pop()
+        order.splice(index, 1)
       };
       if (order.fulfilled==false) {
-        order.pop()
+        order.splice(index, 1)
       };
     })
     newOrders;
@@ -85,7 +85,7 @@ class OrderList extends React.Component {
 
 
     return(
-      <div>
+      <div id="list">
 
         {orders}
       </div>
