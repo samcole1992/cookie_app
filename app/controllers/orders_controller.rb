@@ -21,10 +21,11 @@ class OrdersController < ApplicationController
     @user = current_user
     @pickup = ""
     if @order.pickup
-      @pickup = "pickup"
+      @pickup = "Pickup"
     else
-      @pickup = "delivery"
+      @pickup = "Delivery"
     end
+  
   end
 
   def new
@@ -49,8 +50,11 @@ class OrdersController < ApplicationController
     else
       @pickup = "pickup"
     end
+    @order.payment=@order.cookie_amount
+
     # binding.pry
     if @order.save
+
       flash[:notice] = "Order created successfully!"
       redirect_to users_path
     else

@@ -6,27 +6,22 @@
     <div id="username"class="row container">
       <div class="small-6 small-centered columns">
 
-      <div class="field">
+      <div id="username"class="field">
         <%= f.label :cookie_type %><br/>
         <%= f.text_field :cookie_type %>
       </div>
 
-      <div class="field"><br/>
+      <div id="username"class="field"><br/>
         <%= f.label :cookie_amount, "How many cookies?" %><br/>
         <%= f.collection_radio_buttons :cookie_amount, [[6, "6"], [12, "12"], [18, "18"], [24, "24"], [30, "30"], [36, "36"], [42, "42"], [48, "48"]], :first, :last %>
-      </div><br/>
-
-      <div class="field">
-        <%= f.label :payment %><br/>
-        <%= f.text_field :payment %>
       </div>
 
-      <div class="field"><br/>
+      <div id="username"class="field"><br/>
         <%= f.label :allergies %><br/>
         <%= f.text_field :allergies %>
       </div>
 
-      <div class="field"><br/>
+      <div id="username"class="field"><br/>
         <%= f.label :pickup, "Pickup or Delivery?" %><br/>
         <%= f.collection_radio_buttons :pickup, [[true, "Pickup"], [false, "Delivery"]], :first, :last %>
       </div><br/>

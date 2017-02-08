@@ -8,11 +8,11 @@ class Order extends Component {
 
   render(){
     let order = <a href={`orders/${this.props.order.id}`}>{this.props.order.cookie_amount} {this.props.order.cookie_type}</a>;
-    
+
     let distance = <span>{this.props.order.distance}</span>
 
     return(
-      <div>
+      <div class="callout">
         {order} Distance: {distance}
       </div>
     );

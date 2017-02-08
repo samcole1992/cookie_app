@@ -1,24 +1,22 @@
-<div class="row container">
 
 <div class="sign_up_whole">
 
 <h1 id="index-title" class="text-center ">DEVOUR</h1>
-  <h3 id="index-welcome" class="text-center">What's up <%= @user.username %>! Want cookies?</h1>
+  <h3 id="index-welcome" class="text-center">What's up <%= @user.first_name %>! Want cookies?</h1>
 <br/>
 <br/>
-  <div class="large-6 medium-6 small-12 columns">
-    <div class="alert callout radius">
-    <h2 id="button" class="text-center"><%= link_to "Order cookies", new_order_path%></h2>
-    </div>
+<div class="row container">
+  <div class="large-6 medium-6 small-12 text-center columns">
+    <p><%= button_to "Order Cookies",  new_order_path,method: :get, class: "button"%></p>
   </div>
+  <div class="large-6 medium-6 small-12 text-center columns">
 
   <%if @user.baker%>
-  <div class="large-6 medium-6 small-12 columns">
-    <div class="success callout radius">
-      <h2 id="button" class="text-center"><%= link_to "Bake Cookies", orders_path%></h2>
-    </div>
+
+      <p><%= button_to "Bake Cookies", orders_path, method: :get, class: "button"%></p>
     </div>
   <%end%>
+</div>
 
   <h4 id="list">Current Ordered Orders</h3>
   <div>
@@ -28,11 +26,11 @@
         <% unless order.fulfilled && order.completion %>
             <% if order.fulfilled && !order.completion %>
               <li id="list"><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}"%>
-              </li>
-
+                ordered on <%= "#{order.created_at.to_date}"%></li>
               <p>This order was picked up by <%=link_to"#{order.provider.username}", "/users/#{order.provider.id}"%> Please rate your order!</p>
             <% elsif !order.fulfilled && !order.completion %>
               <li id="list"><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %>
+                ordered on <%= "#{order.created_at.to_date}"%></li>
               </li>
             <% end %>
             <% end %>

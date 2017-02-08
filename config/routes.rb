@@ -19,5 +19,5 @@ Rails.application.routes.draw do
     resources :reviews
   end
   resources :orders
-resources :charges
+  resources :charges
 end

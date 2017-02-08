@@ -1,9 +1,9 @@
 <div class="sign_up_whole">
-
   <div class="row container">
-    <div class="columns large-6 small-12">
-      <h3 id="username"><%=@order.consumer.username %>'s order
+    <div class="columns small-12">
+      <h3 id="username"><%=@order.consumer.first_name %> <%=@order.consumer.last_name%>'s order
       </h3>
+      <br/>
       <h3 id="username">
         <%= @order.cookie_amount%> <%= @order.cookie_type%> cookies
         for $<%=@order.payment %>
@@ -23,7 +23,7 @@
       </h3>
       <br/>
       <h3 id="username">
-        <%=@order.consumer.username %> can be contacted at <%=@order.consumer.phone_number%>
+        <%=@order.consumer.first_name %> can be contacted at <%=@order.consumer.phone_number%>
       </h3>
 
   <% if @order.consumer != @user && @user.baker %>
@@ -46,6 +46,7 @@
 
   <% if @order.consumer == @user %>
     <% if @order.fulfilled && !@order.completion %>
+    <%= link_to "Pay", new_charge_path(:order_id => @order.id) %>
       <%= form_for(@order) do |f| %>
 
         <div class="field">

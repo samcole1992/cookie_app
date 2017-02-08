@@ -30,11 +30,20 @@ body {
 
  }
 
- #button{
-   font-family: 'Quando', serif;
-   color: #2F1D06;
+ .button {
+   font-size: 30px;
+   background-color: brown;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+   border-radius: 85px;
+    font-weight: bold;
+}
 
- }
+.button:hover {
+    background-color: #E8D5B7;
+    color: black;
+    font-weight: bold;
+}
  #list{
    font-family: 'Quattrocentro', serif;
   color: #2F1D06;

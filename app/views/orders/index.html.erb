@@ -3,18 +3,6 @@
     <h4 id="index-welcome">Available Orders:</h4>
     <% unless @orders.empty? %>
     <div id="OrderList"></div>
-
-      <!-- <ul>
-        <% @orders.each do |order| %>
-          <% if !order.fulfilled && order.consumer != @user %>
-            <li>
-              <%=link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %>
-              Distance: <%="#{order.distance.round(2)}" %>
-
-            </li>
-          <%end%>
-        <% end %>
-      </ul> -->
     <% end %>
   </div>
 

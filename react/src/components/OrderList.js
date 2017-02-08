@@ -85,7 +85,7 @@ class OrderList extends React.Component {
 
 
     return(
-      <div id="list">
+      <div>
 
         {orders}
       </div>
