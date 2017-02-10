@@ -20,29 +20,40 @@
 
         </div>
 
-        <% if @baker== @user%>
-
-        <%else%>
-        <%= form_for [@baker, @review] do |f| %>
+        <% if @baker == @user%>
         <div class="row container">
-          <div class="columns large-6 small-12">
-          <div class="field">
-            <%= f.label :body, "Review", id: "forms" %>
-            <%= f.text_field :body %>
-          </div>
 
-          <div class="field">
-            <%= f.label :rating, "Rating", id: "forms" %>
-              <%= f.collection_radio_buttons :rating, [[1, "1"], [2, "2"], [3, "3"], [4, "4"], [5, "5"]], :first, :last %>
-          </div>
+        <div class="columns large-6 small-12">
 
-          <div class="actions">
-            <%= f.submit "Submit Review", id: "forms" %>
-          </div>
+          <ul>
+            <%@recipes.each do |recipe| %>
+              <li id="list"> <%= link_to "#{recipe["title"]}", "#{recipe["f2f_url"]}"%></li>
+            <%end%>
+          </ul>
+
         </div>
       </div>
-      <% end %>
-      <% end %>
+        <%else%>
+          <%= form_for [@baker, @review] do |f| %>
+            <div class="row container">
+              <div class="columns large-6 small-12">
+              <div class="field">
+                <%= f.label :body, "Review", id: "forms" %>
+                <%= f.text_field :body %>
+              </div>
+
+              <div class="field">
+                <%= f.label :rating, "Rating", id: "forms" %>
+                  <%= f.collection_radio_buttons :rating, [[1, "1"], [2, "2"], [3, "3"], [4, "4"], [5, "5"]], :first, :last %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Submit Review", id: "forms" %>
+              </div>
+            </div>
+            </div>
+          <% end %>
+        <% end %>
 
       <% if @user.admin %>
         <%= form_for(@user) do |f|%>
@@ -56,4 +67,5 @@
           </div>
         <% end %>
       <%end %>
+
 </div>

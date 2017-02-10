@@ -7,16 +7,17 @@ class Api::V1::OrdersController < ApplicationController
     @user = current_user
 
     orders = Order.all
-    orderlist= orders.sort_by{|v|v["distance"]}
-    orderlist1 = orderlist.delete_if { |h| h["distance"]==0}
-    orderlist2 = orderlist1.delete_if { |h| h["fulfilled"]===true}
 
-    orderlist2.each do |order|
+
+    orders.each do |order|
       a=Geokit::Geocoders::GoogleGeocoder.geocode "#{order.consumer.street}, #{order.consumer.city}, #{order.consumer.state}"
       b= Geokit::Geocoders::GoogleGeocoder.geocode "#{@user.street}, #{@user.city}, #{@user.state}"
       c = a.distance_to(b)
       order.distance =c.round(2)
     end
+    orderlist= orders.sort_by{|v|v["distance"]}
+    orderlist1 = orderlist.delete_if { |h| h["distance"]==0}
+    orderlist2 = orderlist1.delete_if { |h| h["fulfilled"]===true}
      @orders =orderlist2
     render json: @orders
   end

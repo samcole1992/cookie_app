@@ -11,7 +11,7 @@
       <br/>
       <h3 id="username">
         Allergies:
-        <% if @order.allergies = ''%>
+        <% if @order.allergies.length == 0%>
           None
         <% else %>
           <%=@order.allergies %>

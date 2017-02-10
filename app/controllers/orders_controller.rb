@@ -6,12 +6,18 @@ class OrdersController < ApplicationController
   def index
     @user = current_user
     orders = Order.all
+
+
     orders.each do |order|
       a=Geokit::Geocoders::GoogleGeocoder.geocode "#{order.consumer.street}, #{order.consumer.city}, #{order.consumer.state}"
       b= Geokit::Geocoders::GoogleGeocoder.geocode "#{@user.street}, #{@user.city}, #{@user.state}"
-      order.distance = a.distance_to(b)
+      c = a.distance_to(b)
+      order.distance =c.round(2)
     end
-     @orders= orders.sort_by{|v|v["distance"]}
+    orderlist= orders.sort_by{|v|v["distance"]}
+    orderlist1 = orderlist.delete_if { |h| h["distance"]==0}
+    orderlist2 = orderlist1.delete_if { |h| h["fulfilled"]===true}
+     @orders =orderlist2
     #  binding.pry
     end
 
@@ -20,12 +26,13 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @user = current_user
     @pickup = ""
+    binding.pry
     if @order.pickup
       @pickup = "Pickup"
     else
       @pickup = "Delivery"
     end
-  
+
   end
 
   def new

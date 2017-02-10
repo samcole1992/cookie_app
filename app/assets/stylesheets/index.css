@@ -19,29 +19,29 @@ body {
 
 #index-title{
   font-size: 100px;
-  font-family: 'Amaranth', serif;
+  font-family: 'Bevan', cursive;
   color: #2F1D06;
 
 }
  #index-welcome{
    font-size: 40px;
-   font-family: 'Quattrocentro', serif;
+   font-family: 'Ubuntu', sans-serif;
    color: #2F1D06;
 
  }
 
  .button {
-   font-size: 30px;
+   font-size: 45px;
    background-color: brown;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
-   border-radius: 85px;
+   border-radius: 95px;
     font-weight: bold;
 }
 
 .button:hover {
-    background-color: #E8D5B7;
-    color: black;
+    background-color: #ad824e;
+    color: #2F1D06;
     font-weight: bold;
 }
  #list{
@@ -60,7 +60,7 @@ body {
    font-size: 20px;
  }
  #forms{
-   font-family: 'Quattrocentro', serif;
+   font-family: 'Patua One', cursive;
 
-   font-size: 30px;
+   font-size: 40px;
  }

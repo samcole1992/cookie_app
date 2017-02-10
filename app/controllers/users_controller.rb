@@ -1,6 +1,7 @@
 require 'pry'
 require 'geokit'
 require 'httparty'
+require 'json'
 class UsersController < ApplicationController
   def index
     @user = current_user
@@ -14,7 +15,11 @@ class UsersController < ApplicationController
     baker_id = a[-1].to_i
     @baker = User.find_by(id: baker_id)
     @user = current_user
-    response = HTTParty.get("http://food2fork.com/api/search?key={06560de398a0c7f695ec038ce5ad9927}&q=shredded%20chicken")
+    key = ENV["FOOD2FORK_KEY"]
+    response = HTTParty.get("http://food2fork.com/api/search?key=#{key}&q=cookies")
+    parsed = JSON.parse(response)
+    @recipes = parsed["recipes"]
+
     # binding.pry
 
     @reviews = Review.where(provider_id: @baker.id)
