@@ -9,7 +9,7 @@
           <h4 id="username" class="text-center">Rating:</h4>
             <div id="username"class="text-center">
               Be the first to rate
-             <%=@baker.username %>!</div>
+             <%=@baker.first_name %>!</div>
           <% else%>
             <h4 id="username" class="text-center">Rating:</h4>
             <p id="username"class="text-center"><%= @average %></p>
@@ -20,34 +20,39 @@
 
         </div>
 
-      <%= form_for [@baker, @review] do |f| %>
-      <div class="row container">
-        <div class="columns large-6 small-12">
-        <div class="field">
-          <%= f.label :body, "Review" %>
-          <%= f.text_field :body %>
-        </div>
+        <% if @baker== @user%>
 
-        <div class="field">
-          <%= f.label :rating, "Rating" %>
-            <%= f.collection_radio_buttons :rating, [[1, "1"], [2, "2"], [3, "3"], [4, "4"], [5, "5"]], :first, :last %>
-        </div>
+        <%else%>
+        <%= form_for [@baker, @review] do |f| %>
+        <div class="row container">
+          <div class="columns large-6 small-12">
+          <div class="field">
+            <%= f.label :body, "Review", id: "forms" %>
+            <%= f.text_field :body %>
+          </div>
 
-        <div class="actions">
-          <%= f.submit "Submit Review" %>
+          <div class="field">
+            <%= f.label :rating, "Rating", id: "forms" %>
+              <%= f.collection_radio_buttons :rating, [[1, "1"], [2, "2"], [3, "3"], [4, "4"], [5, "5"]], :first, :last %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Submit Review", id: "forms" %>
+          </div>
         </div>
       </div>
-    </div>
-    <% end %>
+      <% end %>
+      <% end %>
+
       <% if @user.admin %>
         <%= form_for(@user) do |f|%>
           <div class="field">
-            <%= f.label :admin, "Make this user an Admin?" %>
+            <%= f.label :admin, "Make this user an Admin?", id: "small_forms" %>
             <%= f.check_box :admin %>
           </div>
 
           <div class="actions">
-            <%= f.submit "Submit" %>
+            <%= f.submit "Submit", id: "small_forms" %>
           </div>
         <% end %>
       <%end %>

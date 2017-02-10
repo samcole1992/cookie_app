@@ -20,5 +20,4 @@ class Api::V1::OrdersController < ApplicationController
      @orders =orderlist2
     render json: @orders
   end
-
 end

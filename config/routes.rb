@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "users#index"
-
-  namespace :api do
-    namespace :v1 do
-      resources :orders
-    end
+  resources :users do
+    resources :reviews
   end
+  resources :orders
+  resources :charges
+
   namespace :api do
     namespace :v1 do
       resources :users do
@@ -15,9 +15,11 @@ Rails.application.routes.draw do
      end
     end
   end
-  resources :users do
-    resources :reviews
+
+  namespace :api do
+    namespace :v1 do
+      resources :orders
+    end
   end
-  resources :orders
-  resources :charges
+
 end

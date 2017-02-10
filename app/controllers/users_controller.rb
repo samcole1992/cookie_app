@@ -1,7 +1,7 @@
 require 'pry'
 require 'geokit'
+require 'httparty'
 class UsersController < ApplicationController
-
   def index
     @user = current_user
     @orders = Order.where(consumer_id: @user.id)
@@ -13,11 +13,12 @@ class UsersController < ApplicationController
     a = request.original_url
     baker_id = a[-1].to_i
     @baker = User.find_by(id: baker_id)
+    @user = current_user
+    response = HTTParty.get("http://food2fork.com/api/search?key={06560de398a0c7f695ec038ce5ad9927}&q=shredded%20chicken")
     # binding.pry
 
     @reviews = Review.where(provider_id: @baker.id)
     @review = Review.new(review_params)
-    @user = current_user
 
     @review.provider = @baker
     @review.consumer = @user

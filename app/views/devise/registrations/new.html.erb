@@ -1,5 +1,5 @@
 <div class="sign_up_whole">
-  <h2>Sign up</h2>
+  <h2 id= "username">Sign up</h2>
 
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -8,54 +8,45 @@
 
     <div class="small-12 medium-6 large-6 columns">
       <div class="field">
-        <%= f.label :first_name, "First Name" %><br />
+        <%= f.label :first_name, "First Name",id: "small_forms" %><br />
         <%= f.text_field :first_name, autofocus: true %>
       </div>
 
       <div class="field">
-        <%= f.label :last_name, "Last Name" %><br />
+        <%= f.label :last_name, "Last Name",id: "small_forms" %><br />
         <%= f.text_field :last_name, autofocus: true %>
       </div>
 
       <div class="field">
-        <%= f.label :username %><br />
-        <%= f.text_field :username, autofocus: true %>
-      </div>
-
-      <div class="field">
-        <%= f.label :street, "Street Address" %><br/>
+        <%= f.label :street, "Street Address",id: "small_forms" %><br/>
         <%= f.text_field :street %>
       </div>
 
       <div class="field">
-        <%= f.label :city %><br/>
+        <%= f.label :city,id: "small_forms" %><br/>
         <%= f.text_field :city %>
       </div>
 
       <div class="field">
-        <%= f.label :state %><br/>
+        <%= f.label :state,id: "small_forms" %><br/>
         <%= f.text_field :state %>
       </div>
     </div>
 
     <div class="small-12 medium-6 large-6 columns">
-      <div class="field">
-        <%= f.label :zip, "Zip Code" %><br/>
-        <%= f.text_field :zip %>
-      </div>
 
       <div class="field">
-        <%= f.label :email %><br />
+        <%= f.label :email,id: "small_forms" %><br />
         <%= f.email_field :email, autofocus: true %>
       </div>
 
       <div class="field">
-        <%= f.label :phone_number %><br />
+        <%= f.label :phone_number,id: "small_forms" %><br />
         <%= f.text_field :phone_number %>
       </div>
 
       <div class="field">
-        <%= f.label :password %>
+        <%= f.label :password,id: "small_forms" %>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
@@ -63,20 +54,21 @@
       </div>
 
       <div class="field">
-        <%= f.label :password_confirmation %><br />
+        <%= f.label :password_confirmation,id: "small_forms" %><br />
         <%= f.password_field :password_confirmation, autocomplete: "off" %>
       </div>
 
       <div class="field">
-        <%= f.label :baker, "Want to be a Baker?" %>
+        <%= f.label :baker, "Want to be a Baker?", id: "small_forms" %>
         <%= f.check_box :baker %>
       </div>
 
       <div class="actions">
-        <%= f.submit "Create Account" %>
+        <%= f.submit "Create",id: "small_forms" %>
       </div>
     </div>
   </div>
 
     <% end %>
+
 </div>

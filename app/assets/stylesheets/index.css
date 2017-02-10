@@ -53,5 +53,14 @@ body {
    text-align: center;
    font-family: 'Quattrocentro', serif;
    color: #2F1D06;
+ }
+ #small_forms{
+   font-family: 'Quattrocentro', serif;
 
+   font-size: 20px;
+ }
+ #forms{
+   font-family: 'Quattrocentro', serif;
+
+   font-size: 30px;
  }

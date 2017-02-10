@@ -7,13 +7,13 @@
 <br/>
 <div class="row container">
   <div class="large-6 medium-6 small-12 text-center columns">
-    <p><%= button_to "Order Cookies",  new_order_path,method: :get, class: "button"%></p>
+    <p><%= button_to "Order Cookies",  new_order_path,method: :get, class: "button",id: "forms"%></p>
   </div>
   <div class="large-6 medium-6 small-12 text-center columns">
 
   <%if @user.baker%>
 
-      <p><%= button_to "Bake Cookies", orders_path, method: :get, class: "button"%></p>
+      <p><%= button_to "Bake Cookies", orders_path, method: :get, class: "button",id: "forms"%></p>
     </div>
   <%end%>
 </div>
@@ -46,6 +46,7 @@
     <div class="large-6 medium-6 small-12 columns">
       <ul id="list">
         <% @users.each do |user| %>
+
         <li><%=link_to "#{user.username}","users/user.id"%></li>
         <%= link_to "Delete", user, method: :delete, data: {confirm: "Are you sure?"} %>
 
