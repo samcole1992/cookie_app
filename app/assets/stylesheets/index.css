@@ -25,9 +25,13 @@ body {
 }
  #index-welcome{
    font-size: 40px;
-   font-family: 'Ubuntu', sans-serif;
+   font-family: 'Bevan', cursive;
    color: #2F1D06;
 
+ }
+ .list{
+   font-family: 'Patua One', cursive;
+  color: #2F1D06;
  }
 
  .button {
@@ -37,6 +41,7 @@ body {
     transition-duration: 0.4s;
    border-radius: 95px;
     font-weight: bold;
+
 }
 
 .button:hover {
@@ -45,19 +50,26 @@ body {
     font-weight: bold;
 }
  #list{
-   font-family: 'Quattrocentro', serif;
+   font-family: 'Patua One', cursive;
   color: #2F1D06;
  }
 
  #username{
    text-align: center;
-   font-family: 'Quattrocentro', serif;
+   font-family: 'Bevan', cursive;
    color: #2F1D06;
  }
  #small_forms{
-   font-family: 'Quattrocentro', serif;
+   font-family: 'Patua One', cursive;
+   color: #2F1D06;
 
    font-size: 20px;
+ }
+ #forms1{
+   font-family: 'Patua One', cursive;
+   color: #2F1D06;
+
+   font-size: 40px;
  }
  #forms{
    font-family: 'Patua One', cursive;

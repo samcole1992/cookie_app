@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @user = current_user
     @pickup = ""
-    binding.pry
+    # binding.pry
     if @order.pickup
       @pickup = "Pickup"
     else

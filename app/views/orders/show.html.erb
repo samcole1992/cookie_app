@@ -32,12 +32,12 @@
       <%= form_for(@order) do |f| %>
 
         <div class="field">
-          <%= f.label :fulfilled, "Accept?" %>
+          <%= f.label :fulfilled, "Accept?",id: "list" %>
           <%= f.check_box :fulfilled %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Submit" %>
+          <%= f.submit "Submit",id: "list" %>
         </div>
 
       <% end %>
@@ -50,12 +50,12 @@
       <%= form_for(@order) do |f| %>
 
         <div class="field">
-          <%= f.label :completion, "Order Complete?" %>
+          <%= f.label :completion, "Order Complete?",id: "list" %>
           <%= f.check_box :completion %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Submit" %>
+          <%= f.submit "Submit",id: "list" %>
         </div>
 
       <% end %>

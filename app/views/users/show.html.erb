@@ -8,8 +8,8 @@
           <%if @average.nan? %>
           <h4 id="username" class="text-center">Rating:</h4>
             <div id="username"class="text-center">
-              Be the first to rate
-             <%=@baker.first_name %>!</div>
+              Not yet rated
+             </div>
           <% else%>
             <h4 id="username" class="text-center">Rating:</h4>
             <p id="username"class="text-center"><%= @average %></p>
@@ -24,7 +24,7 @@
         <div class="row container">
 
         <div class="columns large-6 small-12">
-
+          <h1 id="forms1">Recipes</h1>
           <ul>
             <%@recipes.each do |recipe| %>
               <li id="list"> <%= link_to "#{recipe["title"]}", "#{recipe["f2f_url"]}"%></li>

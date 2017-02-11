@@ -46,6 +46,4 @@ class UsersController < ApplicationController
     params.permit(:rating, :body)
   end
 
-
-
 end
