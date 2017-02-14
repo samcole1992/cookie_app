@@ -10,7 +10,6 @@ class Charge < ApplicationRecord
     if valid?
       customer = Stripe::Customer.create(
         charge: id, card: stripe_card_token)
-        binding.pry
       self.stripe_customer_token = customer.id
       save!
     end

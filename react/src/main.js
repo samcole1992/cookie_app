@@ -9,7 +9,6 @@ $(function() {
   if (document.getElementById('OrderList')){
     ReactDOM.render(
       <OrderList />,
-
       document.getElementById('OrderList')
     );
   } else {

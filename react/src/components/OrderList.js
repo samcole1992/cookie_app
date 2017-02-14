@@ -63,7 +63,7 @@ class OrderList extends React.Component {
     this.setState({
       orders:newOrders
     })
-  }
+  } 
 
   render(){
 

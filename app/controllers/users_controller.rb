@@ -11,16 +11,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    a = request.original_url
-    baker_id = a[-1].to_i
-    @baker = User.find_by(id: baker_id)
+
+    @baker = User.find(params[:id])
     @user = current_user
     key = ENV["FOOD2FORK_KEY"]
     response = HTTParty.get("http://food2fork.com/api/search?key=#{key}&q=cookies")
     parsed = JSON.parse(response)
     @recipes = parsed["recipes"]
 
-    # binding.pry
 
     @reviews = Review.where(provider_id: @baker.id)
     @review = Review.new(review_params)
@@ -43,7 +41,7 @@ class UsersController < ApplicationController
   private
 
   def review_params
-    params.permit(:rating, :body)
+    params.permit(:rating, :body, :provider_id, :consumer_id)
   end
 
 end

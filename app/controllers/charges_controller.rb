@@ -9,8 +9,6 @@ class ChargesController < ApplicationController
     end
 
     def create
-
-
       @user = current_user
       @charge = Charge.new(params[:id])
       @charge.order_id = params[:charge][:order_id]

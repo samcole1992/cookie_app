@@ -27,7 +27,7 @@
             <% if order.fulfilled && !order.completion %>
               <li id="list"><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}"%>
                 ordered on <%= "#{order.created_at.to_date}"%></li>
-              <p id="list">This order was picked up by <%=link_to"#{order.provider.username}", "/users/#{order.provider.id}"%> Please rate your order!</p>
+              <p id="list">This order was picked up by <%=link_to"#{order.provider.first_name}", "/users/#{order.provider.id}"%> Please rate your order!</p>
             <% elsif !order.fulfilled && !order.completion %>
               <li id="list"><%= link_to "#{order.cookie_amount} #{order.cookie_type}", "/orders/#{order.id}" %>
                 ordered on <%= "#{order.created_at.to_date}"%></li>

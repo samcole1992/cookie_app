@@ -18,15 +18,12 @@ class OrdersController < ApplicationController
     orderlist1 = orderlist.delete_if { |h| h["distance"]==0}
     orderlist2 = orderlist1.delete_if { |h| h["fulfilled"]===true}
      @orders =orderlist2
-    #  binding.pry
     end
 
   def show
-    # binding.pry
     @order = Order.find(params[:id])
     @user = current_user
     @pickup = ""
-    # binding.pry
     if @order.pickup
       @pickup = "Pickup"
     else
@@ -59,13 +56,11 @@ class OrdersController < ApplicationController
     end
     @order.payment=@order.cookie_amount
 
-    # binding.pry
     if @order.save
 
       flash[:notice] = "Order created successfully!"
       redirect_to users_path
     else
-      # binding.pry
       flash.now[:notice] = @order.errors.full_messages.to_sentence
       render :new
     end
