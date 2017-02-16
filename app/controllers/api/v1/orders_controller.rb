@@ -18,7 +18,6 @@ class Api::V1::OrdersController < ApplicationController
     orderlist1 = orderlist.delete_if { |h| h["distance"]==0}
     orderlist2 = orderlist1.delete_if { |h| h["fulfilled"]===true}
      @orders =orderlist2
-     binding.pry
     render json: @orders
   end
 end

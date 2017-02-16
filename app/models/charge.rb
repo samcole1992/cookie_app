@@ -7,12 +7,24 @@ class Charge < ApplicationRecord
 
 
   def save_with_payment
-    if valid?
-      customer = Stripe::Customer.create(
-        charge: id, card: stripe_card_token)
-      self.stripe_customer_token = customer.id
-      save!
-    end
+    begin
+      if valid?
+        customer = Stripe::Customer.create(
+          charge: id, card: stripe_card_token)
+        self.stripe_customer_token = customer.id
+        save!
+        # binding.pry
+        #
+        # charge = Stripe::Charge.create(
+        #   :amount => (@order.amount * 100).floor,
+        #   :description => 'charge.create',
+        #   :currency => "usd",
+        #   :customer => @order.consumer.id,
+        #   :source => card.id
+        #   )
+
+      end
+end
   end
 
 end

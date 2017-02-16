@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+###This project uses the following components:
 
-Things you may want to cover:
+* Ruby 2.2.5
 
-* Ruby version
+* Rails 5
 
-* System dependencies
+* PostgreSQL
 
-* Configuration
+* React
 
-* Database creation
+* Fetch
 
-* Database initialization
+* Javascript
 
-* How to run the test suite
+* Foundation
 
-* Services (job queues, cache servers, search engines, etc.)
+##Demo
 
-* Deployment instructions
+Visit our Heroku page, (https://devour.herokuapp.com/ "Devour")
 
-* ...
+##Set up Rails
+
+``git clone https://github.com/samcole1992/cookie_app
+cd cookie
+bundle install
+rake db:create
+rake db:migrate```
+
+##Run the application
+
+Run the following commands in your terminal from `Cookie` directory:
+
+`rails s
+npm start`
+
+Open the browser and enter `localhost:3000`.
