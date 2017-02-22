@@ -7,6 +7,8 @@ class Charge < ApplicationRecord
 
 
   def save_with_payment
+    Stripe.api_key = ENV["StripeKey"]
+
     begin
       if valid?
         customer = Stripe::Customer.create(
