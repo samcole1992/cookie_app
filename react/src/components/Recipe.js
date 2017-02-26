@@ -4,6 +4,7 @@ class Recipe extends Component {
   constructor(props){
     super(props);
     this.state: {
+      recipes:[],
       recipe: null
     };
 this.handleRadioChange = this.handleRadioChange.bind(this)
@@ -42,8 +43,22 @@ this.handleRadioChange = this.handleRadioChange.bind(this)
     else {
       type = ''
     }
-    }
-    fetch(`http://food2fork.com/api/search?key=${key}&q=${}cookies`)
-  }
+    fetch(`http://food2fork.com/api/search?key=${key}&q=${type}cookies`,{})
+    .then(response => {
+      if (response.ok) {
+        return response;
+      }
+      else {
+        let errorMessage = `${response.status}, (${response.statusText})`;
+        let error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(response=>{
 
+    })
+  }
 }
+
+export default Recipe;
