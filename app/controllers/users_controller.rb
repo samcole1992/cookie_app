@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     parsed = JSON.parse(response)
     @recipes = parsed["recipes"]
 
-
+binding.pry
     @reviews = Review.where(provider_id: @baker.id)
     @review = Review.new(review_params)
 

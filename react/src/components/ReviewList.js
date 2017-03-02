@@ -32,7 +32,7 @@ componentDidMount() {
            newReviews.push(review);
          });
         this.setState({
-          reviews: newReviews,
+          reviews: newReviews
         });
       });
     }

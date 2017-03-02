@@ -18,7 +18,7 @@ $(function() {
           document.getElementById('ReviewList')
         );
     }
-    else if (document.getElementById('recipe')) {
+    else if (document.getElementById('Recipe')) {
       ReactDOM.render(
         <Recipe />,
         document.getElementById('Recipe')

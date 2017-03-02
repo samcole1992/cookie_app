@@ -5,43 +5,55 @@ class Recipe extends Component {
     super(props);
     this.state: {
       recipes:[],
-      recipe: null
+      recipe: null,
+      type:'',
+      key:ENV["FOOD2FORK_KEY"]
     };
-this.handleRadioChange = this.handleRadioChange.bind(this)
+this.handleOptionChange = this.handleOptionChange.bind(this)
   }
 
-  handleRadioChange = (event)=>{
-    this.setState({
-      recipe: event.currentTarget.value
-    })
-  }
+  handleOptionChange: function (changeEvent) {
+  this.setState({
+    recipe: changeEvent.target.value
+  });
+},
 
   componentDidMount(){
-    let key = ENV["FOOD2FORK_KEY"]
-    let type = '';
     if (this.state.recipe== chocolateChip) {
-      type = 'chocolate%20chip%20'
+      this.setState({
+      type: 'chocolate%20chip%20'})
     }
     else if (this.state.recipe== peanutButter) {
-      type = 'peanut%20butter%20'
-    }
+      this.setState({
+      type: 'peanut%20butter%20'})
+        }
     else if (this.state.recipe == sugar) {
-      type = 'sugar%20'
-    }
+      this.setState({
+      type: 'sugar'})
+        }
     else if (this.state.recipe == oatmealRaisin) {
-      type = 'oatmeal%20raisin%20'
+      this.setState({
+      type:'oatmeal%20raisin%20'
+    })
     }
     else if (this.state.recipe == snickerDoodle) {
-      type = 'snickerdoodle%20'
+      this.setState({
+
+      type:'snickerdoodle%20'
+    })
     }
     else if (this.state.recipe== gingerbread) {
-      type = 'gingerbread%20'
+      this.setState({
+
+      type:'gingerbread%20'})
+
     }
     else if (this.state.recipe== shortbread) {
-      type = 'shortbread'
-    }
-    else {
-      type = ''
+      this.setState({
+
+      type:'shortbread'
+    })
+    
     }
     fetch(`http://food2fork.com/api/search?key=${key}&q=${type}cookies`,{})
     .then(response => {
@@ -55,9 +67,95 @@ this.handleRadioChange = this.handleRadioChange.bind(this)
       }
     })
     .then(response => response.json())
-    .then(response=>{
+    .then(response=> {
+      let newRecipes =[];
+      response.forEach(function(recipe){
+        newRecipes.push(recipe);
 
+      });
+      this.setState({
+        recipes: newRecipes
+      });
+    });
+  }
+
+  render(){
+    let recipes;
+    recipes = this.state.recipes.map((recipe)=>{
+      return(
+        <a href={``}
+
+        />
+      )
     })
+    return(
+      <form>
+   <div className="radio">
+     <label>
+       <input type="radio" value="chocolateChip"
+                     checked={this.state.recipe === 'chocolateChip'}
+                     onChange={this.handleOptionChange} />
+       Chocolate Chip
+     </label>
+   </div>
+   <div className="radio">
+     <label>
+       <input type="radio" value="peanutButter"
+                     checked={this.state.recipe === 'peanutButter'}
+                     onChange={this.handleOptionChange} />
+       Peanut Butter
+     </label>
+   </div>
+   <div className="radio">
+     <label>
+       <input type="radio" value="sugar"
+                     checked={this.state.recipe === 'sugar'}
+                     onChange={this.handleOptionChange} />
+       Sugar
+     </label>
+   </div>
+   <div className="radio">
+     <label>
+       <input type="radio" value="oatmealRaisin"
+                     checked={this.state.recipe === 'oatmealRaisin'}
+                     onChange={this.handleOptionChange} />
+       Oatmeal Raisin
+     </label>
+   </div>
+   <div className="radio">
+     <label>
+       <input type="radio" value="snickerDoodle"
+                     checked={this.state.recipe === 'snickerDoodle'}
+                     onChange={this.handleOptionChange} />
+       SnickerDoodle
+     </label>
+   </div>
+   <div className="radio">
+     <label>
+       <input type="radio" value="gingerbread"
+                     checked={this.state.recipe === 'gingerbread'}
+                     onChange={this.handleOptionChange} />
+       Gingerbread
+     </label>
+   </div>
+   <div className="radio">
+     <label>
+       <input type="radio" value="shortbread"
+                     checked={this.state.recipe === 'shortbread'}
+                     onChange={this.handleOptionChange} />
+       Shortbread
+     </label>
+   </div>
+   <div className="radio">
+     <label>
+       <input type="radio" value=""
+                     checked={this.state.recipe === ''}
+                     onChange={this.handleOptionChange} />
+       Random
+     </label>
+   </div>
+ </form>
+    )
   }
 }
 
