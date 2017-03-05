@@ -3,8 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReviewList from './components/ReviewList';
 import OrderList from './components/OrderList';
-import Recipe from './components/Recipe';
-
+import RecipeList from './components/RecipeList';
 
 $(function() {
   if (document.getElementById('OrderList')){
@@ -14,14 +13,15 @@ $(function() {
     );
   } else if (document.getElementById('ReviewList')) {
             ReactDOM.render(
+
           <ReviewList />,
           document.getElementById('ReviewList')
         );
     }
-    else if (document.getElementById('Recipe')) {
+    else if (document.getElementById('RecipeList')) {
       ReactDOM.render(
-        <Recipe />,
-        document.getElementById('Recipe')
+        <RecipeList />,
+        document.getElementById('RecipeList')
       );
     }
   });
