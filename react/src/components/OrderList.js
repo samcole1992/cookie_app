@@ -17,8 +17,10 @@ class OrderList extends React.Component {
 
   getOrders() {
     fetch('api/v1/orders',{
-      credentials: "same-origin"
-    }).then(response => {
+      credentials: "same-origin",
+      method: 'get'
+    })
+    .then(response => {
       if (response.ok) {
         return response;
       } else {
@@ -63,7 +65,7 @@ class OrderList extends React.Component {
     this.setState({
       orders:newOrders
     })
-  } 
+  }
 
   render(){
 
@@ -82,8 +84,6 @@ class OrderList extends React.Component {
         />
       );
     });
-
-
     return(
       <div>
 

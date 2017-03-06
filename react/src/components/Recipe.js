@@ -11,7 +11,7 @@ class Recipe extends Component {
     let img = this.props.recipe.img_url
     return(
       <div>
-        {recipe} img
+        {recipe}
       </div>
     );
   }

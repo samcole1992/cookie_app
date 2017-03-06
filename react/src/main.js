@@ -13,7 +13,6 @@ $(function() {
     );
   } else if (document.getElementById('ReviewList')) {
             ReactDOM.render(
-
           <ReviewList />,
           document.getElementById('ReviewList')
         );

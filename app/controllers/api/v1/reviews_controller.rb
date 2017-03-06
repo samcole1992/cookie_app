@@ -13,7 +13,7 @@ class Api::V1::ReviewsController < ApplicationController
     @baker = User.find_by(id: @baker.id)
     reviewlist = Review.where(provider_id: baker_id)
     reviewlist1= reviewlist.sort_by{|v|v["rating"]}
-    @reviews = reviewlist1.delete_if { |h| h["provider_id"]!=baker_id}
+    @reviews = reviewlist1.delete_if { |h| h["provider_id"]!=@baker.id}
     render json: @reviews
   end
 

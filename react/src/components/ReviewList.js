@@ -8,11 +8,15 @@ class ReviewList extends Component {
       currentUser: null,
       reviews: []
     };
+}
+componentDidMount(){
+  this.getReviews();
+  setInterval(this.getOrders, 15000);
+}
 
-  }
-componentDidMount() {
-      let url = window.location.href.split("/");
-      let newBakerId = url[url.length - 1];
+      getReviews() {
+        let url = window.location.href.split("/");
+        let newBakerId = url[url.length - 1];
       fetch(`/api/v1/users/${newBakerId}/reviews`, {
         credentials: 'same-origin'
       })
@@ -27,18 +31,27 @@ componentDidMount() {
       })
 
       .then(response => response.json())
+
       .then(response => {
+
         let newReviews =[];
+        let url = window.location.href.split("/");
+        let newBakerId = url[url.length - 1];
+
          response.forEach(function(review){
-           newReviews.push(review);
-         });
-         newReviews;
-         debugger;
-        this.setState({
-          reviews: newReviews
-        });
-      });
+           if (review.provider_id ==newBakerId) {
+               newReviews.push(review);
+             }
+             })
+             newReviews;
+            this.setState({
+              reviews: newReviews
+            });
+          });
     }
+
+
+
     render() {
 
       let reviews;
@@ -56,23 +69,12 @@ componentDidMount() {
           );
         });
       }
-      let url = window.location.href.split("/");
-      let newBakerId = url[url.length - 1];
-      let realReviews=[];
-      if (this.state.reviews) {
-        this.state.reviews.forEach(function(review){
-          if (review.provider_id ===newBakerId){
-          realReviews.push(review);}
 
-        })
 
-      }
-
-      realReviews;
       return(
 
         <div>
-          {realReviews}
+          {reviews}
         </div>
       );
     }
