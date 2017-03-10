@@ -11,16 +11,21 @@ $(function() {
       <OrderList />,
       document.getElementById('OrderList')
     );
-  } else if (document.getElementById('ReviewList')) {
-            ReactDOM.render(
-          <ReviewList />,
-          document.getElementById('ReviewList')
-        );
-    }
-    else if (document.getElementById('RecipeList')) {
-      ReactDOM.render(
-        <RecipeList />,
-        document.getElementById('RecipeList')
-      );
-    }
-  });
+  }
+}
+$(function() {
+  if (document.getElementById('ReviewList')){
+    ReactDOM.render(
+      <OrderList />,
+      document.getElementById('ReviewList')
+    );
+  }
+}
+$(function() {
+  if (document.getElementById('RecipeList')){
+    ReactDOM.render(
+      <OrderList />,
+      document.getElementById('RecipeList')
+    );
+  }
+}
