@@ -7,59 +7,59 @@ class RecipeList extends Component {
     this.state= {
       recipes:[],
       recipe: null,
-      type:'chocolate%20chip%20'
+      type:'chocolate%20chip%20',
+      key:ENV["FOOD2FORK_KEY"]
     };
-// this.handleOptionChange = this.handleOptionChange.bind(this)
+this.handleOptionChange = this.handleOptionChange.bind(this)
   }
 
-//   handleOptionChange(changeEvent) {
-//   this.setState({
-//     recipe: changeEvent.target.value
-//   });
-// }
+  handleOptionChange(changeEvent) {
+  this.setState({
+    recipe: changeEvent.target.value
+  });
+}
 
-  componentDidMount(){
-    // if (this.state.recipe== chocolateChip) {
-    //   this.setState({
-    //   type: 'chocolate%20chip%20'})
-    // }
-    // else if (this.state.recipe== peanutButter) {
-    //   this.setState({
-    //   type: 'peanut%20butter%20'})
-    //     }
-    // else if (this.state.recipe == sugar) {
-    //   this.setState({
-    //   type: 'sugar'})
-    //     }
-    // else if (this.state.recipe == oatmealRaisin) {
-    //   this.setState({
-    //   type:'oatmeal%20raisin%20'
-    // })
-    // }
-    // else if (this.state.recipe == snickerDoodle) {
-    //   this.setState({
-    //
-    //   type:'snickerdoodle%20'
-    // })
-    // }
-    // else if (this.state.recipe== gingerbread) {
-    //   this.setState({
-    //
-    //   type:'gingerbread%20'})
-    //
-    // }
-    // else if (this.state.recipe== shortbread) {
-    //   this.setState({
-    //
-    //   type:'shortbread%20'
-    // })
-    //
-    // }
-    fetch(`http://food2fork.com/api/search?key=06560de398a0c7f695ec038ce5ad9927&q=${this.state.type}cookies`,{
-      mode: 'no-cors'
+  componentWillMount(){
+    if (this.state.recipe== chocolateChip) {
+      this.setState({
+      type: 'chocolate%20chip%20'})
+    }
+    else if (this.state.recipe== peanutButter) {
+      this.setState({
+      type: 'peanut%20butter%20'})
+        }
+    else if (this.state.recipe == sugar) {
+      this.setState({
+      type: 'sugar'})
+        }
+    else if (this.state.recipe == oatmealRaisin) {
+      this.setState({
+      type:'oatmeal%20raisin%20'
+    })
+    }
+    else if (this.state.recipe == snickerDoodle) {
+      this.setState({
+
+      type:'snickerdoodle%20'
+    })
+    }
+    else if (this.state.recipe== gingerbread) {
+      this.setState({
+
+      type:'gingerbread%20'})
+
+    }
+    else if (this.state.recipe== shortbread) {
+      this.setState({
+
+      type:'shortbread%20'
+    })
+
+    }
+    fetch(`http://food2fork.com/api/search?key=${this.state.key}&q=${this.state.type}cookies`,{
+      method: 'get'
     })
     .then(response => {
-      debugger;
       if (response.ok) {
         return response;
       }

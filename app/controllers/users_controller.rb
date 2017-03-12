@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
     @baker = User.find(params[:id])
     @user = current_user
+    
     key = ENV["FOOD2FORK_KEY"]
     response = HTTParty.get("http://food2fork.com/api/search?key=#{key}&q=cookies")
     parsed = JSON.parse(response)

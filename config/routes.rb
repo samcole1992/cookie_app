@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :orders
   resources :charges
+  resources :recipes
 
   namespace :api do
     namespace :v1 do
