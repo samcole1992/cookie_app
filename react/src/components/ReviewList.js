@@ -53,6 +53,7 @@ componentDidMount(){
 
 
     render() {
+      debugger
       let reviews;
       if (this.state.reviews) {
         reviews = this.state.reviews.map((review) => {
