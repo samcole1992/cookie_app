@@ -1,21 +1,19 @@
 require "rails_helper"
 
+order_one = Order.create(cookie_type: "Oatmeal", cookie_amount: "123", payment: "100", consumer_id: 1)
 
-user_one = User.create(first_name: "Sam", last_name: "Cole", street: "1 Here St.", state: "MA", city: "Boston",email: "sam@gmail.com", encrypted_password: "ththth")
-order_one = Order.create(cookie_type: "Oatmeal", cookie_amount: "123")
+RSpec.describe Order, :type => :model do
 
-RSpec.describe User, :type => :model do
-
-  it "is valid with a first name" do
-    expect(user_one.first_name).to eq("Sam")
+  it "is valid with a payment" do
+    expect(order_one.payment).to eq("100")
   end
 
-  it "is valid with a street" do
-    expect(user_one.address).to eq("1 Here St.")
+  it "is valid with a cookie type" do
+    expect(order_one.cookie_type).to eq("Oatmeal")
   end
 
-  it "is valid with a city" do
-    expect(user_one.city).to eq("Boston")
+  it "is valid with a cookie amount" do
+    expect(order_one.cookie_amount).to eq("123")
   end
 
   it "is valid with a state" do
@@ -23,23 +21,13 @@ RSpec.describe User, :type => :model do
   end
 
   it "is not valid without a name" do
-    bad_user = User.new(name: nil)
-    expect(bad_user).to_not be_valid
+    bad_order = Order.new(cookie_type: nil)
+    expect(bad_order).to_not be_valid
   end
 
-  it "is not valid without an street" do
-    bad_user = User.new(street: nil)
-    expect(bad_user).to_not be_valid
+  it "is valid without allergies" do
+    good_order = Order.new(allergies: nil)
+    expect(good_order).to_be valid
   end
 
-  it "is not valid without a city" do
-    bad_user = User.new(city: nil)
-    expect(bad_user).to_not be_valid
-  end
-
-  it "is not valid without a state" do
-    bad_user = User.new(state: nil)
-    expect(bad_user).to_not be_valid
-  end
-  
 end
