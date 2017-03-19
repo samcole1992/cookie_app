@@ -1,32 +1,20 @@
 require 'pry'
+gem 'stripe'
 class Charge < ApplicationRecord
 
   belongs_to :order
 
-  attr_accessor :stripe_card_token
+  attr_accessor :stripe_customer_token
 
 
-  def save_with_payment
-    Stripe.api_key = ENV["StripeKey"]
+  def process_payment
+    customer = Stripe::Customer.create
+                                       card: stripe_customer_token
 
-    begin
-      if valid?
-        customer = Stripe::Customer.create(
-          charge: id, card: stripe_card_token)
-        self.stripe_customer_token = customer.id
-        save!
-        # binding.pry
-        #
-        # charge = Stripe::Charge.create(
-        #   :amount => (@order.amount * 100).floor,
-        #   :description => 'charge.create',
-        #   :currency => "usd",
-        #   :customer => @order.consumer.id,
-        #   :source => card.id
-        #   )
+    Stripe::Charge.create customer: customer.id,
+                          amount: order.price * 100,
+                          currency: 'usd'
 
-      end
-end
   end
 
 end

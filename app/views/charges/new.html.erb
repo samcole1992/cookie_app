@@ -11,23 +11,12 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
-  <%= f.hidden_field :order_id %>
+    <% else %>
+  <%= f.hidden_field :order_id, value: @order.id %>
 
-  <div class="field">
-      <%= label_tag :card_number, "Credit Card Number ",id: "forms" %>
-      <%= text_field_tag :card_number, nil, name: nil %>
-  </div>
-  <div class="field">
-      <%= label_tag :card_code, "Security Code on Card (CVV)",id: "forms" %>
-      <%= text_field_tag :card_code, nil, name: nil %>
-  </div>
-  <div class="field">
-    <%= label_tag :card_month, "Card Expiration",id: "forms" %>
-    <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
-    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
-  </div>
-  <div class="actions"><%= f.submit "Pay" %></div>
+  <div class="actions"><%= link_to "Pay", "https://checkout.stripe.com/checkout.js",
+, data: {amount:((@order.payment*100)+1),description:@order, key:Rails.application.secrets.stripe_publishable_key}
+   %></div>
 <% end %>
 </div>
 </div>

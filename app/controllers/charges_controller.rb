@@ -2,9 +2,9 @@ require 'pry'
 class ChargesController < ApplicationController
 
     def new
-      order = Order.find(params[:order_id])
+      @order = Order.find(params[:order_id])
       @charge = Charge.new
-      @charge.order_id = params[:order_id]
+      @charge.order_id = @order.id
 
     end
 
