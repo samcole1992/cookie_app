@@ -1,4 +1,5 @@
 require 'pry'
+require 'stripe'
 class ChargesController < ApplicationController
 
     def new
@@ -14,12 +15,19 @@ class ChargesController < ApplicationController
       @charge.order_id = params[:charge][:order_id]
       @charge.payment = @charge.order.payment
       @order = @charge.order
-      if @charge.save_with_payment
-        flash[:notice] = "Payment successful!"
-        redirect_to @order
-      else
-        render :new
-      end
+
+      customer = Stripe::Customer.create(
+    :source  => params[:stripeToken]
+  )
+
+  charge = Stripe::Charge.create(
+:customer    => customer.id,
+:amount      => ((@charge.payment)*100),
+:description => 'Rails Stripe customer',
+:currency    => 'usd'
+)
+redirect_to users_path
+
     end
 
 
