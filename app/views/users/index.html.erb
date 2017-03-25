@@ -2,14 +2,14 @@
 <div class="sign_up_whole">
 
 <h1 id="index-title" class="text-center ">DEVOUR</h1>
-  <h3 id="index-welcome" class="text-center">What's up <%= @user.first_name %>! Want cookies?</h1>
+  <h3 id="index-welcome" class="text-center"><%= @user.first_name %> Want cookies?</h1>
 <br/>
 <br/>
 <div class="row container">
-  <div class="large-6 medium-6 small-12 text-center columns">
-    <p><%= button_to "Order Cookies",  new_order_path,method: :get, class: "button",id: "forms"%></p>
+  <div class="large-6 small-12 text-center columns">
+    <p><%= button_to "Order Cookies", new_order_path, method: :get, class: "button",id: "forms"%></p>
   </div>
-  <div class="large-6 medium-6 small-12 text-center columns">
+  <div class="large-6 small-12 text-center columns">
 
   <%if @user.baker%>
 
@@ -43,7 +43,7 @@
   <%if @user.admin %>
   <h4 id="list">Users:</h3>
 
-    <div class="large-6 medium-6 small-12 columns">
+    <div class="large-6 small-12 columns">
       <ul id="list">
         <% @users.each do |user| %>
 

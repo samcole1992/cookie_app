@@ -16,22 +16,23 @@ class ChargesController < ApplicationController
       @order = @charge.order
 
       customer = Stripe::Customer.create(
-    :source  => params[:stripeToken]
-  )
+      :source  => params[:stripeToken]
+      )
 
-  charge = Stripe::Charge.create(
-:customer    => customer.id,
-:amount      => ((@charge.payment)*100),
-:description => 'Rails Stripe customer',
-:currency    => 'usd'
-)
-if customer && charge
-  flash[:notice] = "Payment successfull. Please mark order as complete"
-
-end
-redirect_to @order
+      charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => ((@charge.payment)*100),
+      :description => 'Rails Stripe customer',
+      :currency    => 'usd'
+      )
+    if customer && charge
+      flash[:notice] = "Payment successfull."
+      @order.completion ==true
 
     end
+    redirect_to @user
+
+        end
 
 
 end

@@ -6,7 +6,4 @@ class Charge < ApplicationRecord
 
   attr_accessor :stripe_customer_token
 
-
-  
-
 end

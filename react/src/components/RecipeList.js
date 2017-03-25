@@ -58,7 +58,6 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
 
     fetch(`http://food2fork.com/api/search?key=${this.state.key}&q=${this.state.type}cookies`,{
 
-
     })
     .then(response => {
       if (response.ok) {
@@ -71,7 +70,6 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
       }
     })
     .then(response => response.json())
-    debugger;
     .then(response=> {
       let newRecipes =[];
       response.forEach(function(recipe){
@@ -164,9 +162,9 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
      </label>
    </div>
  </form>
-//  <div>
-// {recipes}
-//  </div>
+ <div>
+{recipes}
+ </div>
 
     )
   }
