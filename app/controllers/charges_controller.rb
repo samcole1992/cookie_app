@@ -2,12 +2,11 @@ require 'pry'
 require 'stripe'
 class ChargesController < ApplicationController
 
-    def new
-      @order = Order.find(params[:order_id])
-      @charge = Charge.new
-      @charge.order_id = @order.id
-
-    end
+    # def new
+    #   @order = Order.find(params[:order_id])
+    #   @charge = Charge.new
+    #   @charge.order_id = @order.id
+    # end
 
     def create
       @user = current_user
@@ -26,7 +25,11 @@ class ChargesController < ApplicationController
 :description => 'Rails Stripe customer',
 :currency    => 'usd'
 )
-redirect_to users_path
+if customer && charge
+  flash[:notice] = "Payment successfull. Please mark order as complete"
+
+end
+redirect_to @order
 
     end
 

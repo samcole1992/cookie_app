@@ -44,9 +44,33 @@
     <%end%>
   <%end%>
 
-  <% if @order.consumer == @user %>
-    <% if @order.fulfilled && !@order.completion %>
-    <%= link_to "Pay", new_charge_path(:order_id => @order.id) %>
+  <% if @order.consumer == @user && @order.fulfilled && !@order.completion %>
+
+    <div class="small-12 small-centered columns">
+
+    <%= form_for @charge do |f| %>
+      <% if @charge.errors.any? %>
+        <div class="error_messages">
+          <h2><%= pluralize(@charge.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+          <ul>
+          <% @charge.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% else %>
+      <%= f.hidden_field :order_id, value: @order.id %>
+
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Pay for cookies"
+              data-amount= "<%=@order.payment*100%>"
+              data-locale="auto"></script>
+
+    <% end %>
+    <% end %>
+    </div>
+    <br/>
       <%= form_for(@order) do |f| %>
 
         <div class="field">
@@ -59,7 +83,6 @@
         </div>
 
       <% end %>
-    <% end %>
   <% end %>
 
     <p id="username"><%= link_to "Back to Orders", orders_path %></p>

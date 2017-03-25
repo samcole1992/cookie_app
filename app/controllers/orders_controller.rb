@@ -23,6 +23,8 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @user = current_user
+    @charge = Charge.new
+    @charge.order_id = @order.id
     @pickup = ""
     if @order.pickup
       @pickup = "Pickup"

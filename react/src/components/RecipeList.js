@@ -14,57 +14,53 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
   }
 
   handleOptionChange(changeEvent) {
-    debugger;
   this.setState({
     recipe: changeEvent.target.value
   });
+  if (this.state.recipe== "chocolateChip") {
+    this.setState({
+    type: 'chocolate%20chip%20'})
+  }
+  else if (this.state.recipe== "peanutButter") {
+    this.setState({
+    type: 'peanut%20butter%20'})
+      }
+  else if (this.state.recipe == "sugar") {
+    this.setState({
+    type: 'sugar%20'})
+      }
+  else if (this.state.recipe == "oatmealRaisin") {
+    this.setState({
+    type:'oatmeal%20raisin%20'
+  })
+  }
+  else if (this.state.recipe == "snickerDoodle") {
+    this.setState({
+
+    type:'snickerdoodle%20'
+  })
+  }
+  else if (this.state.recipe== "gingerbread") {
+    this.setState({
+
+    type:'gingerbread%20'})
+
+  }
+  else if (this.state.recipe== "shortbread") {
+    this.setState({
+
+    type:'shortbread%20'
+  })
+  }
 }
 
-  componentDidMount(){
-    // debugger;
-    if (this.state.recipe== "chocolateChip") {
-      this.setState({
-      type: 'chocolate%20chip%20'})
-    }
-    else if (this.state.recipe== "peanutButter") {
-      this.setState({
-      type: 'peanut%20butter%20'})
-        }
-    else if (this.state.recipe == "sugar") {
-      this.setState({
-      type: 'sugar'})
-        }
-    else if (this.state.recipe == "oatmealRaisin") {
-      this.setState({
-      type:'oatmeal%20raisin%20'
-    })
-    }
-    else if (this.state.recipe == "snickerDoodle") {
-      this.setState({
+  componentWillUpdate(){
 
-      type:'snickerdoodle%20'
-    })
-    }
-    else if (this.state.recipe== "gingerbread") {
-      this.setState({
-
-      type:'gingerbread%20'})
-
-    }
-    else if (this.state.recipe== "shortbread") {
-      this.setState({
-
-      type:'shortbread%20'
-    })
-    }
     fetch(`http://food2fork.com/api/search?key=${this.state.key}&q=${this.state.type}cookies`,{
 
-      headers: {
-        "Access-Control-Allow-Origin": '*'
- }
+
     })
     .then(response => {
-      debugger;
       if (response.ok) {
         return response;
       }
@@ -75,12 +71,11 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
       }
     })
     .then(response => response.json())
+    debugger;
     .then(response=> {
-      debugger;
       let newRecipes =[];
       response.forEach(function(recipe){
         newRecipes.push(recipe);
-
       });
       this.setState({
         recipes: newRecipes
