@@ -27,7 +27,8 @@ class ChargesController < ApplicationController
       )
     if customer && charge
       flash[:notice] = "Payment successfull."
-      @order.completion ==true
+      @order.completion == true
+      @order.baker.owed_money += @order.payment
 
     end
     redirect_to @user

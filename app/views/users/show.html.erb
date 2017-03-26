@@ -16,6 +16,7 @@
             <%end%>
         </h1>
 
+
         <div class="list text-centered
         " id="ReviewList"></div>
 
@@ -25,7 +26,7 @@
         <div class="row container">
 
         <div class="columns large-6 small-12">
-
+          <h2>Money Made: $<%=@baker.owed_money %></h2>
         <%= button_to "Sweet Recipes", recipes_path, method: :get, class: "button",id: "forms"%>
         </div>
       </div>
