@@ -52,6 +52,7 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
     type:'shortbread%20'
   })
   }
+  console.log(this.state);
 }
 
   componentWillUpdate(){
@@ -72,6 +73,7 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
     .then(response => response.json())
     .then(response=> {
       let newRecipes =[];
+      debugger;
       response.forEach(function(recipe){
         newRecipes.push(recipe);
       });
@@ -162,9 +164,9 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
      </label>
    </div>
  </form>
- <div>
-{recipes}
- </div>
+//  <div>
+// {recipes}
+//  </div>
 
     )
   }
