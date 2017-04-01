@@ -26,8 +26,11 @@
         <div class="row container">
 
         <div class="columns large-6 small-12">
-          <h2>Money Made: $<%=@baker.owed_money %></h2>
+          <h2 id="username" class="text-right">Money Made: $<%=@baker.owed_money %></h2>
+          <br/>
         <%= button_to "Sweet Recipes", recipes_path, method: :get, class: "button",id: "forms"%>
+        <br/>
+        <button type="button" name="button" class="button" id="forms">Get Paid</button>
         </div>
       </div>
         <%else%>
