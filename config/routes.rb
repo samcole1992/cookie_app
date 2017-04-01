@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :charges
   resources :recipes
+  resources :payments
 
   namespace :api do
     namespace :v1 do
