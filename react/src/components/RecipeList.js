@@ -19,10 +19,19 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
   });
 }
 
+// handleOptionChange(changeEvent) {
+//     this.setState({
+//
+//     type: changeEvent.target.value
+//
+//   })
+// debugger;
+//
+// }
+
 
   componentDidUpdate(){
-    debugger;
-    if (this.state != saveState) {
+    console.log(this.state);
 
 
     if (this.state.recipe== "chocolateChip") {
@@ -80,9 +89,9 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
     //     recipes: response.recipes
     //   });
     // });
-    console.log(this.state);
+    // console.log(this.state);
   }
-  }
+
 
   render(){
     let recipes;
