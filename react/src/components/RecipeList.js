@@ -7,7 +7,6 @@ class RecipeList extends Component {
     this.state= {
       recipes:[],
       recipe: null,
-      type:'',
       key:'06560de398a0c7f695ec038ce5ad9927'
     };
 this.handleOptionChange = this.handleOptionChange.bind(this)
@@ -17,78 +16,33 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
   this.setState({
     recipe: changeEvent.target.value
   });
-}
 
-// handleOptionChange(changeEvent) {
-//     this.setState({
-//
-//     type: changeEvent.target.value
-//
-//   })
-// debugger;
-//
-// }
+}
 
 
   componentDidUpdate(){
     console.log(this.state);
 
+    fetch(`http://food2fork.com/api/search?key=${this.state.key}&q=${this.state.recipe}cookies`,{
 
-    if (this.state.recipe== "chocolateChip") {
-      this.setState({
-      type: 'chocolate%20chip%20'})
-    }
-    else if (this.state.recipe== "peanutButter") {
-      this.setState({
-      type: 'peanut%20butter%20'})
-        }
-    else if (this.state.recipe == "sugar") {
-      this.setState({
-      type: 'sugar%20'})
-        }
-    else if (this.state.recipe == "oatmealRaisin") {
-      this.setState({
-      type:'oatmeal%20raisin%20'
     })
-    }
-    else if (this.state.recipe == "snickerDoodle") {
-      this.setState({
-
-      type:'snickerdoodle%20'
+    .then(response => {
+      if (response.ok) {
+        return response;
+      }
+      else {
+        let errorMessage = `${response.status}, (${response.statusText})`;
+        let error = new Error(errorMessage);
+        throw(error);
+      }
     })
-    }
-    else if (this.state.recipe== "gingerbread") {
+    .then(response => response.json())
+    .then(response=> {
       this.setState({
-
-      type:'gingerbread%20'})
-
-    }
-    else if (this.state.recipe== "shortbread") {
-      this.setState({
-
-      type:'shortbread%20'
-    })
-  }
-    //
-    // fetch(`http://food2fork.com/api/search?key=${this.state.key}&q=${this.state.type}cookies`,{
-    //
-    // })
-    // .then(response => {
-    //   if (response.ok) {
-    //     return response;
-    //   }
-    //   else {
-    //     let errorMessage = `${response.status}, (${response.statusText})`;
-    //     let error = new Error(errorMessage);
-    //     throw(error);
-    //   }
-    // })
-    // .then(response => response.json())
-    // .then(response=> {
-    //   this.setState({
-    //     recipes: response.recipes
-    //   });
-    // });
+        recipes: response.recipes
+      });
+      debugger;
+    });
     // console.log(this.state);
   }
 
@@ -111,56 +65,56 @@ this.handleOptionChange = this.handleOptionChange.bind(this)
   <form>
     <div className="radio">
       <label>
-        <input type="radio" value="chocolateChip"
-                     checked={this.state.recipe === 'chocolateChip'}
+        <input type="radio" value="chocolate%20chip%20"
+                     checked={this.state.recipe === 'chocolate%20chip%20'}
                      onChange={this.handleOptionChange} />
                 Chocolate Chip
       </label>
     </div>
     <div className="radio">
      <label>
-       <input type="radio" value="peanutButter"
-                     checked={this.state.recipe === 'peanutButter'}
+       <input type="radio" value="peanut%20butter%20"
+                     checked={this.state.recipe === 'peanut%20butter%20'}
                      onChange={this.handleOptionChange} />
        Peanut Butter
       </label>
     </div>
     <div className="radio">
      <label>
-       <input type="radio" value="sugar"
-                     checked={this.state.recipe === 'sugar'}
+       <input type="radio" value="sugar%20"
+                     checked={this.state.recipe === 'sugar%20'}
                      onChange={this.handleOptionChange} />
        Sugar
      </label>
     </div>
     <div className="radio">
      <label>
-       <input type="radio" value="oatmealRaisin"
-                     checked={this.state.recipe === 'oatmealRaisin'}
+       <input type="radio" value="oatmeal%20raisin%20"
+                     checked={this.state.recipe === 'oatmeal%20raisin%20'}
                      onChange={this.handleOptionChange} />
        Oatmeal Raisin
      </label>
     </div>
     <div className="radio">
      <label>
-       <input type="radio" value="snickerDoodle"
-                     checked={this.state.recipe === 'snickerDoodle'}
+       <input type="radio" value="snickerdoodle%20"
+                     checked={this.state.recipe === 'snickerdoodle%20'}
                      onChange={this.handleOptionChange} />
        SnickerDoodle
      </label>
     </div>
    <div className="radio">
      <label>
-       <input type="radio" value="gingerbread"
-                     checked={this.state.recipe === 'gingerbread'}
+       <input type="radio" value="gingerbread%20"
+                     checked={this.state.recipe === 'gingerbread%20'}
                      onChange={this.handleOptionChange} />
        Gingerbread
      </label>
    </div>
    <div className="radio">
      <label>
-       <input type="radio" value="shortbread"
-                     checked={this.state.recipe === 'shortbread'}
+       <input type="radio" value="shortbread%20"
+                     checked={this.state.recipe === 'shortbread%20'}
                      onChange={this.handleOptionChange} />
        Shortbread
      </label>
