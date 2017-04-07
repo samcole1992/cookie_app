@@ -7,44 +7,54 @@ class RecipeList extends Component {
     this.state= {
       recipes:[],
       recipe: null,
-      key:'06560de398a0c7f695ec038ce5ad9927'
+      key:'06560de398a0c7f695ec038ce5ad9927',
+      stateObject: {}
     };
-this.handleOptionChange = this.handleOptionChange.bind(this)
+  this.handleOptionChange = this.handleOptionChange.bind(this);
+  this.getRecipes = this.getRecipes.bind(this);
+  this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
 
   handleOptionChange(changeEvent) {
+    debugger;
   this.setState({
-    recipe: changeEvent.target.value
+    recipe: changeEvent.target.value,
+    stateObject: this.state
   });
-
-}
-
-
-  componentDidUpdate(){
-    console.log(this.state);
-
-    fetch(`http://food2fork.com/api/search?key=${this.state.key}&q=${this.state.recipe}cookies`,{
-
-    })
-    .then(response => {
-      if (response.ok) {
-        return response;
-      }
-      else {
-        let errorMessage = `${response.status}, (${response.statusText})`;
-        let error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(response=> {
-      this.setState({
-        recipes: response.recipes
-      });
-      debugger;
-    });
-    // console.log(this.state);
   }
+
+getRecipes() {
+  fetch(`http://food2fork.com/api/search?key=${this.state.key}&q=${this.state.recipe}cookies`,{
+
+  })
+  .then(response => {
+    if (response.ok) {
+      return response;
+    }
+    else {
+      let errorMessage = `${response.status}, (${response.statusText})`;
+      let error = new Error(errorMessage);
+      throw(error);
+    }
+  })
+  .then(response => response.json())
+  .then(response=> {
+    this.setState({
+      recipes: response.recipes
+    })
+  }).catch(error=> console.error(`Error in fetch: ${error.message}`))
+
+  }
+
+    componentDidUpdate(){
+      if (this.state.recipe !== this.state.stateObject.recipe) {
+        this.getRecipes();
+        this.setState({
+          stateObject: this.state
+        })
+      }
+
+    }
 
 
   render(){
