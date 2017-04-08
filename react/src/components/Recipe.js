@@ -7,8 +7,8 @@ class Recipe extends Component {
   }
 
   render(){
-    let recipe = <a href={`${this.props.recipe.url}`}>{this.props.recipe.title} </a>;
-    let img = this.props.recipe.img_url
+    let recipe = <a href={`${this.props.url}`}>{this.props.title} </a>;
+    let img = this.props.img_url
     return(
       <div>
         {recipe}

@@ -16,7 +16,6 @@ class RecipeList extends Component {
   }
 
   handleOptionChange(changeEvent) {
-    debugger;
   this.setState({
     recipe: changeEvent.target.value,
     stateObject: this.state
@@ -53,7 +52,6 @@ getRecipes() {
           stateObject: this.state
         })
       }
-
     }
 
 
@@ -72,7 +70,8 @@ getRecipes() {
     })
     recipes;
     return(
-  <form>
+    <div className='row container'>
+  <form className='columns small-6'>
     <div className="radio">
       <label>
         <input type="radio" value="chocolate%20chip%20"
@@ -138,10 +137,10 @@ getRecipes() {
      </label>
    </div>
  </form>
-//  <div>
-// {recipes}
-//  </div>
-
+ <div className='columns small-6'>
+{recipes}
+ </div>
+</div>
     )
   }
 }
